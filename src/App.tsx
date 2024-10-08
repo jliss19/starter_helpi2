@@ -50,6 +50,7 @@ function App() {
         Mason Davis
       </div>
       <div> Jonathan Liss </div>
+      <div>Ronaldo Castillo</div>
     </div>
 
   );
