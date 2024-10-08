@@ -49,6 +49,7 @@ function App() {
       <div>
         Mason Davis
       </div>
+      <div> Jonathan Liss </div>
     </div>
   );
 }
