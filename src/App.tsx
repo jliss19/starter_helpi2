@@ -50,7 +50,7 @@ function App() {
         Ronald Kouloun
       </div>
       <div>
-        Mason Davis
+        Mason Davis 
       </div>
       <div>
         Jonathan Liss
