@@ -52,7 +52,6 @@ function App() {
       <div> Jonathan Liss </div>
       <div>Ronaldo Castillo</div>
       <div>Ronald Kouloun</div>
-      <div> Test </div>
     </div>
 
   );
