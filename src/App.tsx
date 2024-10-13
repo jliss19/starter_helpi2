@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
+import { BasicQuizDescription } from './components/basicquestiondescription';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './components/pages/Home';
 import Basic from './components/pages/Basic';
@@ -53,6 +54,7 @@ function App() {
         Ronaldo Castillo <br />
         Ronald Kouloun 
       </div>
+      <BasicQuizDescription></BasicQuizDescription>
     </div>
     </Router>
   );
