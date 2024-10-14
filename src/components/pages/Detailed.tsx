@@ -20,7 +20,7 @@ const DetailedQuestions: React.FC = () => {
   };
 
   return (
-    <div>
+    <div style={styles.QuestionText}> 
       {/* Question 1: Open-ended */}
       <div className="question">
         <h3>1. Describe a project or task, either personal or professional, that made you feel the most fulfilled or proud. What aspects of that experience were most rewarding to you?</h3>
@@ -240,4 +240,10 @@ const DetailedQuestions: React.FC = () => {
   );
 };
 
+const styles = {
+    QuestionText: {
+        width: '100%',
+        height: '20%',
+    }
+}
 export default DetailedQuestions;
