@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
 import { BasicQuizDescription } from './components/basicquestiondescription';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Home from './components/pages/Home';
+import Basic from './components/pages/Basic';
+import Detailed from './components/pages/Home';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -26,36 +30,33 @@ function App() {
     setKey(event.target.value);
   }
   return (
+    <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main>
+        <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/basic" element={<Basic />} />
+        <Route path="/detailed" element={<Detailed />} />
+        </Routes>
+      </main>
+
+      <div>
       <Form>
         <Form.Label>API Key:</Form.Label>
         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
-      <div>
-        Mason Davis
       </div>
-      <div> Jonathan Liss </div>
-      <div>Ronaldo Castillo</div>
-      <div>Ronald Kouloun</div>
+      <div> Names
+        Jonathan Liss <br />
+        Mason Davis <br />
+        Ronaldo Castillo <br />
+        Ronald Kouloun 
+      </div>
       <BasicQuizDescription></BasicQuizDescription>
     </div>
-
+    </Router>
   );
 }
 
