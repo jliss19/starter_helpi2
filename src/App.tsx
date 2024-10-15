@@ -8,6 +8,10 @@ import Home from './components/pages/Home';
 import Basic from './components/pages/Basic';
 import Detailed from './components/pages/Home';
 import { BasicQuestions } from './components/basicquestions';
+import Detailed from './components/pages/Detailed';
+import Footer from './components/Footer';
+import Layout from './components/Layout';
+import Header from './components/Header'
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -32,6 +36,7 @@ function App() {
   }
   return (
     <Router>
+      <Header />
     <div className="App">
       <main>
         <Routes>
@@ -49,14 +54,9 @@ function App() {
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
       </div>
-      <div> Names
-        Jonathan Liss <br />
-        Mason Davis <br />
-        Ronaldo Castillo <br />
-        Ronald Kouloun 
-      </div>
       <BasicQuizDescription></BasicQuizDescription>
     </div>
+    <Footer />
     </Router>
   );
 }
