@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom'
 const Header: React.FC = () => {
     return (
         <header style={styles.header}>
-                <nav>
+            <nav>
+                <h1>Career Quiz</h1>
         <Link to='/'>Home</Link>
         <Link to='/basic'>| Basic Quiz</Link>
         <Link to='/detailed'>| Detailed Quiz</Link>
