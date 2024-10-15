@@ -8,3 +8,5 @@ export function BasicQuizDescription(): React.JSX.Element {
         </div>
     )
 }
+
+export {}
