@@ -6,7 +6,7 @@ import { BasicQuizDescription } from './components/basicquestiondescription';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './components/pages/Home';
 import Basic from './components/pages/Basic';
-import Detailed from './components/pages/Home';
+import Detailed from './components/pages/Detailed';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Layout from './components/Layout';
