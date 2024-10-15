@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
 const styles = {
     footer: {
         backgroundColor: 'grey',
-        position: 'absolute' as const,
+        position: 'relative' as const,
         bottom: 0,
         width: '100%',
         height: '20%',
