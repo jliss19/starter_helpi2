@@ -6,10 +6,10 @@ import { BasicQuizDescription } from './components/basicquestiondescription';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './components/pages/Home';
 import Basic from './components/pages/Basic';
-import Detailed from './components/pages/Detailed';
-import Navbar from './components/Navbar';
+import Detailed from './components/pages/Home';
 import Footer from './components/Footer';
 import Layout from './components/Layout';
+import Header from './components/Header'
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -34,7 +34,7 @@ function App() {
   }
   return (
     <Router>
-      <Navbar />
+      <Header />
     <div className="App">
       <main>
         <Routes>

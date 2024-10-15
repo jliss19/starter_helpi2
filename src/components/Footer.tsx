@@ -20,7 +20,7 @@ const styles = {
         position: 'relative' as const,
         bottom: 0,
         width: '100%',
-        height: '20%',
+        height: 80,
     }
 }
 
