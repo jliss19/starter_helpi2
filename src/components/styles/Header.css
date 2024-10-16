@@ -1,3 +1,42 @@
 .Header {
-    text-align: left;
+    background-color: #575e67;
+    color: white;
+}
+
+.Header-header {
+    margin: 0; 
+    font-weight: bold;
+}
+
+.Header-nav {
+    display: flex;
+    align-items: center; 
+}
+
+nav {
+    display: flex; 
+    align-items: center; 
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+nav span {
+    color: white;
+    padding: 0 5px;
+}
+
+nav a:focus, nav a:active {
+    outline: none;
+    text-decoration: none;
+}
+
+header {
+    display: flex; 
+    justify-content: space-between; 
+    padding: 20px; 
 }

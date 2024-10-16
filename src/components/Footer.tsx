@@ -3,7 +3,7 @@ import React from 'react';
 const Footer: React.FC = () => {
     return (
         <footer style={styles.footer}>
-            <h1>Footer</h1>
+            <h1></h1>
             <div>
                 <p>Contributors: Jonathan Liss, Ronald Kouloun, Mason Davis, Ronaldo Castillo</p>
             </div>

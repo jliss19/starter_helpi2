@@ -1,8 +1,35 @@
-.Home {
-    text-align: center;
+
+.title {
+    font-weight: bold;
+    color: white;
+    padding: 40 px; 
 }
 
-.Home-header {
-    font-weight: bold;
-    color: #000000
+.header {
+    font-size: large;
+}
+
+.basicbutton {
+    padding: 40px;
+}
+
+.button {
+    background-color: #c77c20;
+    color: white;
+    padding: 10px 20px
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 21vh;
+}
+
+.left, .right {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.right {
+    text-align: left;
 }
