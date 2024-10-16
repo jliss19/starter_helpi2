@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (43 ms)
+  ✕ renders learn react link (52 ms)
 
   ● renders learn react link
 
@@ -12,13 +12,51 @@ FAIL src/App.test.tsx
     Ignored nodes: comments, script, style
     [36m<body>[39m
       [36m<div>[39m
+        [36m<div>[39m
+          [36m<header[39m
+            [33mstyle[39m=[32m"background-color: grey; height: 80px; top: 0px; width: 100%; position: relative;"[39m
+          [36m>[39m
+            [36m<nav[39m
+              [33mstyle[39m=[32m"display: flex; gap: 20px;"[39m
+            [36m>[39m
+              [36m<h1[39m
+                [33mstyle[39m=[32m"display: flex; padding: 20px;"[39m
+              [36m>[39m
+                [0mCareer Quiz[0m
+              [36m</h1>[39m
+              [36m<a[39m
+                [33mhref[39m=[32m"/"[39m
+              [36m>[39m
+                [0mHome[0m
+              [36m</a>[39m
+              [36m<a[39m
+                [33mhref[39m=[32m"/basic"[39m
+              [36m>[39m
+                [0m| Basic Quiz[0m
+              [36m</a>[39m
+              [36m<a[39m
+                [33mhref[39m=[32m"/detailed"[39m
+              [36m>[39m
+                [0m| Detailed Quiz[0m
+              [36m</a>[39m
+            [36m</nav>[39m
+          [36m</header>[39m
+        [36m</div>[39m
         [36m<div[39m
           [33mclass[39m=[32m"App"[39m
         [36m>[39m
           [36m<main>[39m
-            [36m<div>[39m
-              [36m<h1>[39m
-                [0m Home Page [0m
+            [36m<div[39m
+              [33mclass[39m=[32m"Home"[39m
+            [36m>[39m
+              [36m<br />[39m
+              [36m<h1[39m
+                [33mclass[39m=[32m"Home-header"[39m
+              [36m>[39m
+                [0m [0m
+                [36m<u>[39m
+                  [0mTake a Career Quiz[0m
+                [36m</u>[39m
               [36m</h1>[39m
             [36m</div>[39m
           [36m</main>[39m
@@ -46,18 +84,21 @@ FAIL src/App.test.tsx
             [36m</form>[39m
           [36m</div>[39m
           [36m<div>[39m
-            [0m Names Jonathan Liss [0m
-            [36m<br />[39m
-            [0mMason Davis [0m
-            [36m<br />[39m
-            [0mRonaldo Castillo [0m
-            [36m<br />[39m
-            [0mRonald Kouloun[0m
-          [36m</div>[39m
-          [36m<div>[39m
             [0mOur basic quiz is a quick and easy seven question quiz that when completed will show a career recommendation based on your answers. The goal of our basic quiz is to allow those who don't have much of an idea of what they want to go into a general idea of what might work for them.[0m
           [36m</div>[39m
         [36m</div>[39m
+        [36m<footer[39m
+          [33mstyle[39m=[32m"background-color: grey; position: relative; bottom: 0px; width: 100%; height: 80px;"[39m
+        [36m>[39m
+          [36m<h1>[39m
+            [0mFooter[0m
+          [36m</h1>[39m
+          [36m<div>[39m
+            [36m<p>[39m
+              [0mContributors: Jonathan Liss, Ronald Kouloun, Mason Davis, Ronaldo Castillo[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</footer>[39m
       [36m</div>[39m
     [36m</body>[39m
 
@@ -79,27 +120,6 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
--------------------------------|---------|----------|---------|---------|-------------------
-File                           | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
--------------------------------|---------|----------|---------|---------|-------------------
-All files                      |   35.71 |    16.66 |   33.33 |   35.71 |                   
- src                           |   28.57 |    16.66 |      20 |   28.57 |                   
-  App.tsx                      |      60 |       50 |   33.33 |      60 | 16,24-30          
-  index.tsx                    |       0 |      100 |     100 |       0 | 7-19              
-  reportWebVitals.ts           |       0 |        0 |       0 |       0 | 3-10              
- src/components                |     100 |      100 |     100 |     100 |                   
-  Navbar.tsx                   |       0 |        0 |       0 |       0 |                   
-  basicquestiondescription.tsx |     100 |      100 |     100 |     100 |                   
- src/components/pages          |      50 |      100 |   33.33 |      50 |                   
-  Basic.tsx                    |      50 |      100 |       0 |      50 | 4                 
-  Detailed.tsx                 |       0 |      100 |       0 |       0 | 3-4               
-  Home.tsx                     |     100 |      100 |     100 |     100 |                   
--------------------------------|---------|----------|---------|---------|-------------------
-Test Suites: 1 failed, 1 total
-Tests:       1 failed, 1 total
-Snapshots:   0 total
-Time:        2.937 s
-Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
 declaring it in its dependencies. This is currently working because
@@ -112,3 +132,27 @@ ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
 your devDependencies to work around this error. This will make this message
 go away.[0m
   
+-------------------------------|---------|----------|---------|---------|-------------------
+File                           | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------------------|---------|----------|---------|---------|-------------------
+All files                      |   21.95 |    16.66 |   11.36 |   21.95 |                   
+ src                           |   28.57 |    16.66 |      20 |   28.57 |                   
+  App.tsx                      |      60 |       50 |   33.33 |      60 | 18,26-32          
+  index.tsx                    |       0 |      100 |     100 |       0 | 7-19              
+  reportWebVitals.ts           |       0 |        0 |       0 |       0 | 3-10              
+ src/components                |   21.87 |      100 |   18.75 |   21.87 |                   
+  Footer.tsx                   |     100 |      100 |     100 |     100 |                   
+  Header.tsx                   |     100 |      100 |     100 |     100 |                   
+  Layout.tsx                   |       0 |      100 |       0 |       0 | 5-6               
+  basicquestiondescription.tsx |     100 |      100 |     100 |     100 |                   
+  basicquestions.tsx           |       0 |      100 |       0 |       0 | 5-92              
+ src/components/pages          |   17.24 |      100 |    4.34 |   17.24 |                   
+  Basic.tsx                    |      50 |      100 |       0 |      50 | 4                 
+  Detailed.tsx                 |       8 |      100 |       0 |       8 | 4-228             
+  Home.tsx                     |     100 |      100 |     100 |     100 |                   
+-------------------------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.291 s
+Ran all test suites.
