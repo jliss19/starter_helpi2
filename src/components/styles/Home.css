@@ -22,7 +22,7 @@
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 21vh;
+    height: 21%;
 }
 
 .left, .right {
