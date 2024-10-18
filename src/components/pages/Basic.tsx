@@ -1,11 +1,11 @@
-import React from 'react'
+import { BasicQuestions } from '../basicquestions';
 
-const Basic: React.FC = () => {
+function Basic(): React.JSX.Element {
     return (
         <div>
-            <h1>Basic Questions Page</h1>
+            <BasicQuestions></BasicQuestions>
         </div>
-    );
-};
+    )
+}
 
 export default Basic;
