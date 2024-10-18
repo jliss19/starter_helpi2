@@ -1,0 +1,11 @@
+.API {
+    text-align: center;
+}
+
+.API-bar {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    padding: 20px;
+    white-space: nowrap;
+}

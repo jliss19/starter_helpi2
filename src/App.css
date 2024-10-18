@@ -4,9 +4,10 @@ html, body {
 }
 .App {
   text-align: center;
-  background-color: #254b7a;
-  color: white;
-  height: 100vh;
+  background-color: #2B2D42;
+  /*old-blue: 12355B*/
+  color: #EDF2F4;
+  min-height: 100vh;
   
 }
 
@@ -29,7 +30,7 @@ html, body {
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #EDF2F4;
 }
 
 .App-link {
