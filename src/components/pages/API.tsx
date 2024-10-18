@@ -1,6 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
-import {Form, Button} from 'react-bootstrap'
+import {Form} from 'react-bootstrap'
+import {Button} from '@mui/material';
+
+import '../styles/API.css'
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -23,12 +26,12 @@ const API: React.FC = () => {
     setKey(event.target.value);
   }
     return (
-        <div>
-      <Form>
-        <Form.Label>API Key:</Form.Label>
-        <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
+        <div className='API'>
+      <Form className='API-bar'>
+        <Form.Label></Form.Label>
+        <Form.Control style = {{width: '50%'}}type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
         <br></br>
-        <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
+        <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={handleSubmit}>Submit</Button>
       </Form>
       </div>
     )
