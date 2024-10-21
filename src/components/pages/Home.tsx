@@ -7,6 +7,7 @@ import logo from './logo.svg';
 //import {Button} from 'react-bootstrap';
 import { Navigate, useNavigate } from 'react-router-dom';
 
+//npm install @mui/material @emotion/react @emotion/styled
 
 
 const Home: React.FC = () => {
