@@ -1,3 +1,7 @@
+.Detailed {
+  text-align: left;
+}
+
 /* Radio button group container */
 .radio-group {
     display: flex;

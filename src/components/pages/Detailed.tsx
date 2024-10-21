@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../detailed.css";
+import "../styles/Detailed.css";
 
 const DetailedQuestions: React.FC = () => {
   const [responses, setResponses] = useState({
@@ -21,7 +21,7 @@ const DetailedQuestions: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className='Detailed'>
       {/* Question 1: Open-ended */}
       <div className="question">
         <h3 className='questionText'>1. Describe a project or task, either personal or professional, that made you feel the most fulfilled or proud. What aspects of that experience were most rewarding to you?</h3>
