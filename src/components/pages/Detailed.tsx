@@ -1,268 +1,203 @@
 import React, { useState } from 'react';
-import "../styles/Detailed.css";
+import { Form } from 'react-bootstrap';
+import '../styles/Detailed.css';
 
-const DetailedQuestions: React.FC = () => {
-  const [responses, setResponses] = useState({
-    q1: '',
-    q2: '',
-    q3: '',
-    q4: '',
-    q5: '',
-    q6: '',
-    q7: '',
-  });
+export function Detailed(): React.JSX.Element {
+    // Multiple-choice options
+    const q2Options: string[] = [
+        'Communication and leadership',
+        'Technical or hands-on problem-solving',
+        'Creative thinking and innovation',
+        'Research, data analysis, or learning new things',
+    ];
+    const q3Options: string[] = [
+        'Plan ahead with clear steps and follow through',
+        'Work steadily, adjusting priorities as needed',
+        'Rely on creativity and thinking outside the box',
+        'Collaborate with others to find a solution',
+    ];
+    const q5Options: string[] = [
+        'Financial stability and job security',
+        'Personal fulfillment and enjoying what I do',
+        'Career advancement and leadership opportunities',
+        'Work-life balance and flexibility',
+    ];
+    const q7Options: string[] = [
+        'In a leadership role, focusing on decision-making and strategy',
+        'As an expert in my field, building deep technical skills',
+        'Exploring a new career path or creative field',
+        'Owning my own business or freelancing in a flexible environment',
+    ];
 
-  // Handle input changes for open-ended and multiple choice responses
-  const handleChange = (question: string, value: string) => {
-    setResponses({
-      ...responses,
-      [question]: value,
-    });
-  };
+    // State management for each question
+    const [q1Answer, setQ1Answer] = useState<string>('');
+    const [q2Answer, setQ2Answer] = useState<string>(q2Options[0]);
+    const [q3Answer, setQ3Answer] = useState<string>(q3Options[0]);
+    const [q4Answer, setQ4Answer] = useState<string>('');
+    const [q5Answer, setQ5Answer] = useState<string>(q5Options[0]);
+    const [q6Answer, setQ6Answer] = useState<string>('');
+    const [q7Answer, setQ7Answer] = useState<string>(q7Options[0]);
+    const [q8Answer, setQ8Answer] = useState<string>(''); // New state for Question 8
 
-  return (
-    <div className='Detailed'>
-      {/* Question 1: Open-ended */}
-      <div className="question">
-        <h3 className='questionText'>1. Describe a project or task, either personal or professional, that made you feel the most fulfilled or proud. What aspects of that experience were most rewarding to you?</h3>
-        <textarea
-          value={responses.q1}
-          onChange={(e) => handleChange('q1', e.target.value)}
-          placeholder="Type your response here..."
-        />
-      </div>
+    // Handlers for state updates
+    function updateQ1(event: React.ChangeEvent<HTMLInputElement>) {
+        setQ1Answer(event.target.value);
+    }
+    function updateQ2(event: React.ChangeEvent<HTMLInputElement>) {
+        setQ2Answer(event.target.value);
+    }
+    function updateQ3(event: React.ChangeEvent<HTMLInputElement>) {
+        setQ3Answer(event.target.value);
+    }
+    function updateQ4(event: React.ChangeEvent<HTMLInputElement>) {
+        setQ4Answer(event.target.value);
+    }
+    function updateQ5(event: React.ChangeEvent<HTMLInputElement>) {
+        setQ5Answer(event.target.value);
+    }
+    function updateQ6(event: React.ChangeEvent<HTMLInputElement>) {
+        setQ6Answer(event.target.value);
+    }
+    function updateQ7(event: React.ChangeEvent<HTMLInputElement>) {
+        setQ7Answer(event.target.value);
+    }
+    function updateQ8(event: React.ChangeEvent<HTMLInputElement>) {
+        setQ8Answer(event.target.value); // New handler for Question 8
+    }
 
-      {/* Question 2: Multiple choice with custom radio buttons */}
-      <div className="question">
-        <h3 className='questionText'>2. Which skills and activities energize you the most in your work or hobbies?</h3>
-        <div className="radio-group">
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q2"
-              value="Communication and leadership"
-              checked={responses.q2 === 'Communication and leadership'}
-              onChange={(e) => handleChange('q2', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Communication and leadership
-          </label>
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q2"
-              value="Technical or hands-on problem-solving"
-              checked={responses.q2 === 'Technical or hands-on problem-solving'}
-              onChange={(e) => handleChange('q2', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Technical or hands-on problem-solving
-          </label>
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q2"
-              value="Creative thinking and innovation"
-              checked={responses.q2 === 'Creative thinking and innovation'}
-              onChange={(e) => handleChange('q2', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Creative thinking and innovation
-          </label>
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q2"
-              value="Research, data analysis, or learning new things"
-              checked={responses.q2 === 'Research, data analysis, or learning new things'}
-              onChange={(e) => handleChange('q2', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Research, data analysis, or learning new things
-          </label>
+    return (
+        <div className='Detailed'>
+            {/* Question 1 */}
+            <div className="question">
+                <h3 className='questionText'>
+                    1. Describe a project or task, either personal or professional, that made you feel the most fulfilled or proud. What aspects of that experience were most rewarding to you?
+                </h3>
+                <Form.Control
+                    as='textarea'
+                    placeholder="Type your response here..."
+                    value={q1Answer}
+                    onChange={updateQ1}
+                />
+            </div>
+
+            {/* Question 2 */}
+            <div className="question">
+                <h3 className='questionText'>
+                    2. Which skills and activities energize you the most in your work or hobbies?
+                </h3>
+                {q2Options.map((q2option) => (
+                    <Form.Check
+                        type='radio'
+                        key={q2option}
+                        label={q2option}
+                        value={q2option}
+                        checked={q2option === q2Answer}
+                        onChange={updateQ2}
+                        name='q2'
+                    />
+                ))}
+            </div>
+
+            {/* Question 3 */}
+            <div className="question">
+                <h3 className='questionText'>
+                    3. How do you approach challenges and problem-solving in both your personal and professional life?
+                </h3>
+                {q3Options.map((q3option) => (
+                    <Form.Check
+                        type='radio'
+                        key={q3option}
+                        label={q3option}
+                        value={q3option}
+                        checked={q3option === q3Answer}
+                        onChange={updateQ3}
+                        name='q3'
+                    />
+                ))}
+            </div>
+
+            {/* Question 4 */}
+            <div className="question">
+                <h3 className='questionText'>
+                    4. What kind of work activities or tasks make you feel most engaged, excited, or in "flow"? Why do you think those activities resonate with you?
+                </h3>
+                <Form.Control
+                    as='textarea'
+                    placeholder="Type your response here..."
+                    value={q4Answer}
+                    onChange={updateQ4}
+                />
+            </div>
+
+            {/* Question 5 */}
+            <div className="question">
+                <h3 className='questionText'>
+                    5. What motivates you most in a career, and what do you value most in a job?
+                </h3>
+                {q5Options.map((q5option) => (
+                    <Form.Check
+                        type='radio'
+                        key={q5option}
+                        label={q5option}
+                        value={q5option}
+                        checked={q5option === q5Answer}
+                        onChange={updateQ5}
+                        name='q5'
+                    />
+                ))}
+            </div>
+
+            {/* Question 6 */}
+            <div className="question">
+                <h3 className='questionText'>
+                    6. If you could design your perfect workday, what would it look like in terms of tasks, interactions, and environment? How do you think this aligns with your long-term career goals?
+                </h3>
+                <Form.Control
+                    as='textarea'
+                    placeholder="Type your response here..."
+                    value={q6Answer}
+                    onChange={updateQ6}
+                />
+            </div>
+
+            {/* Question 7 */}
+            <div className="question">
+                <h3 className='questionText'>
+                    7. Where do you see yourself in five years, and how do you plan to achieve that goal?
+                </h3>
+                {q7Options.map((q7option) => (
+                    <Form.Check
+                        type='radio'
+                        key={q7option}
+                        label={q7option}
+                        value={q7option}
+                        checked={q7option === q7Answer}
+                        onChange={updateQ7}
+                        name='q7'
+                    />
+                ))}
+            </div>
+
+            {/* Question 8 (New) */}
+            <div className="question">
+                <h3 className='questionText'>
+                    8. What particular field of study would you like to focus on?
+                </h3>
+                <Form.Control
+                    type='text'
+                    placeholder="Type your field of study here..."
+                    value={q8Answer}
+                    onChange={updateQ8}
+                />
+            </div>
+
+            {/* Debugging: Display Responses */}
+            <div className="responses">
+                <h3 className='questionText'>Your Responses:</h3>
+                <pre>{JSON.stringify({ q1Answer, q2Answer, q3Answer, q4Answer, q5Answer, q6Answer, q7Answer, q8Answer }, null, 2)}</pre>
+            </div>
         </div>
-      </div>
+    );
+}
 
-      {/* Question 3: Multiple choice with custom radio buttons */}
-      <div className="question">
-        <h3 className="questionText">3. How do you approach challenges and problem-solving in both your personal and professional life?</h3>
-        <div className="radio-group">
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q3"
-              value="Plan ahead with clear steps and follow through"
-              checked={responses.q3 === 'Plan ahead with clear steps and follow through'}
-              onChange={(e) => handleChange('q3', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Plan ahead with clear steps and follow through
-          </label>
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q3"
-              value="Work steadily, adjusting priorities as needed"
-              checked={responses.q3 === 'Work steadily, adjusting priorities as needed'}
-              onChange={(e) => handleChange('q3', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Work steadily, adjusting priorities as needed
-          </label>
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q3"
-              value="Rely on creativity and thinking outside the box"
-              checked={responses.q3 === 'Rely on creativity and thinking outside the box'}
-              onChange={(e) => handleChange('q3', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Rely on creativity and thinking outside the box
-          </label>
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q3"
-              value="Collaborate with others to find a solution"
-              checked={responses.q3 === 'Collaborate with others to find a solution'}
-              onChange={(e) => handleChange('q3', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Collaborate with others to find a solution
-          </label>
-        </div>
-      </div>
-
-      {/* Question 4: Open-ended */}
-      <div className="question">
-        <h3 className="questionText">4. What kind of work activities or tasks make you feel most engaged, excited, or in "flow"? Why do you think those activities resonate with you?</h3>
-        <textarea
-          value={responses.q4}
-          onChange={(e) => handleChange('q4', e.target.value)}
-          placeholder="Type your response here..."
-        />
-      </div>
-
-      {/* Question 5: Multiple choice with custom radio buttons */}
-      <div className="question">
-        <h3 className="questionText">5. What motivates you most in a career, and what do you value most in a job?</h3>
-        <div className="radio-group">
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q5"
-              value="Financial stability and job security"
-              checked={responses.q5 === 'Financial stability and job security'}
-              onChange={(e) => handleChange('q5', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Financial stability and job security
-          </label>
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q5"
-              value="Personal fulfillment and enjoying what I do"
-              checked={responses.q5 === 'Personal fulfillment and enjoying what I do'}
-              onChange={(e) => handleChange('q5', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Personal fulfillment and enjoying what I do
-          </label>
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q5"
-              value="Career advancement and leadership opportunities"
-              checked={responses.q5 === 'Career advancement and leadership opportunities'}
-              onChange={(e) => handleChange('q5', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Career advancement and leadership opportunities
-          </label>
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q5"
-              value="Work-life balance and flexibility"
-              checked={responses.q5 === 'Work-life balance and flexibility'}
-              onChange={(e) => handleChange('q5', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Work-life balance and flexibility
-          </label>
-        </div>
-      </div>
-
-      {/* Question 6: Open-ended */}
-      <div className="question">
-        <h3 className="questionText">6. If you could design your perfect workday, what would it look like in terms of tasks, interactions, and environment? How do you think this aligns with your long-term career goals?</h3>
-        <textarea
-          value={responses.q6}
-          onChange={(e) => handleChange('q6', e.target.value)}
-          placeholder="Type your response here..."
-        />
-      </div>
-
-      {/* Question 7: Multiple choice */}
-      <div className="question">
-        <h3 className="questionText">7. Where do you see yourself in five years, and how do you plan to achieve that goal?</h3>
-        <div className="radio-group">
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q7"
-              value="In a leadership role, focusing on decision-making and strategy"
-              checked={responses.q7 === 'In a leadership role, focusing on decision-making and strategy'}
-              onChange={(e) => handleChange('q7', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            In a leadership role, focusing on decision-making and strategy
-          </label>
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q7"
-              value="As an expert in my field, building deep technical skills"
-              checked={responses.q7 === 'As an expert in my field, building deep technical skills'}
-              onChange={(e) => handleChange('q7', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            As an expert in my field, building deep technical skills
-          </label>
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q7"
-              value="Exploring a new career path or creative field"
-              checked={responses.q7 === 'Exploring a new career path or creative field'}
-              onChange={(e) => handleChange('q7', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Exploring a new career path or creative field
-          </label>
-          <label className="radio-container">
-            <input
-              type="radio"
-              name="q7"
-              value="Owning my own business or freelancing in a flexible environment"
-              checked={responses.q7 === 'Owning my own business or freelancing in a flexible environment'}
-              onChange={(e) => handleChange('q7', e.target.value)}
-            />
-            <span className="radio-custom"></span>
-            Owning my own business or freelancing in a flexible environment
-          </label>
-        </div>
-      </div>
-
-      {/* Display Responses (debugging) */}
-      <div className="responses">
-        <h3 className='questionText'>Your Responses:</h3>
-        <pre>{JSON.stringify(responses, null, 2)}</pre>
-      </div>
-    </div>
-  );
-};
-
-export default DetailedQuestions;
+export default Detailed;
