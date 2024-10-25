@@ -24,21 +24,8 @@ export function Basic(): React.JSX.Element {
     const [q5Answer,setQ5Answer] = useState<string>('');
     const [q6Answer,setQ6Answer] = useState<string>('');
     const [q7Answer,setQ7Answer] = useState<string>('');
-
-    const ProgressBar = () => {
-        const [progress, setProgress] = useState<number>(0);
-        const increaseProgress = () => {
-            setProgress(prev => (prev > 100 ? prev + 14: 100));
-        }
-        const decreaseProgress = () => {
-            setProgress(prev => (prev > 0 ? prev - 14: 0));
-        }
-    }
-
-    const HandleChange = () => {
-
-    }
-
+    const [submitMessage,setSubmitMessage] = useState<string>('');
+    
     function updateQ1(event: React.ChangeEvent<HTMLInputElement>) {
         setQ1Answer(event.target.value);
     }
