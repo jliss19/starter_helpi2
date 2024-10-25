@@ -1,11 +1,13 @@
-.API {
+.Footer {
     text-align: center;
 }
 
-.API-bar {
+.Footer-API {
     display: flex;
     justify-content: center;
     place-items: center;
-    padding: 20px;
+    padding: 60px;
     white-space: nowrap;
+    position: bottom;
+    min-height: 40vh;
 }
