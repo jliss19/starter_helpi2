@@ -1,7 +1,7 @@
 import { BasicQuestions } from '../basicquestions';
 import React, {useState} from 'react';
-import {Form} from 'react-bootstrap';
-import '../styles/Basic.css'
+import {Button, Form} from 'react-bootstrap';
+import "../styles/Basic.css";
 
 export function Basic(): React.JSX.Element {
     const q1Options:string[]=[
@@ -17,13 +17,15 @@ export function Basic(): React.JSX.Element {
         'People','Data','Technology','Nature'
     ];
 
-    const [q1Answer,setQ1Answer] = useState<string>(q1Options[0]);
-    const [q2Answer,setQ2Answer] = useState<string>(q2Options[0]);
-    const [q3Answer,setQ3Answer] = useState<string>(q3Options[0]);
-    const [q4Answer,setQ4Answer] = useState<string>(q4Options[0]);
+    const [q1Answer,setQ1Answer] = useState<string>('');
+    const [q2Answer,setQ2Answer] = useState<string>('');
+    const [q3Answer,setQ3Answer] = useState<string>('');
+    const [q4Answer,setQ4Answer] = useState<string>('');
     const [q5Answer,setQ5Answer] = useState<string>('');
     const [q6Answer,setQ6Answer] = useState<string>('');
     const [q7Answer,setQ7Answer] = useState<string>('');
+    const [submitMessage,setSubmitMessage] = useState<string>('');
+    
     function updateQ1(event: React.ChangeEvent<HTMLInputElement>) {
         setQ1Answer(event.target.value);
     }
@@ -44,6 +46,13 @@ export function Basic(): React.JSX.Element {
     }
     function updateQ7(event: React.ChangeEvent<HTMLInputElement>) {
         setQ7Answer(event.target.value);
+    }
+    function submitButton(){
+        if (q1Answer !== '' && q2Answer !== '' && q3Answer !== '' && q4Answer !== '' && q5Answer !== '' && q6Answer !== '' && q7Answer !== ''){
+            setSubmitMessage('Congragulations! you have completed all required questions for our basic career quiz')
+        } else {
+            setSubmitMessage('Not quite, make sure you have completed all provided questions above')
+        }
     }
     return (
         <div className = 'Basic'>
@@ -127,6 +136,8 @@ export function Basic(): React.JSX.Element {
                     onChange = {updateQ7}
                 />
             </Form.Group>
+            <Button onClick={submitButton}>Submit</Button>
+            {submitMessage}
         </div>
     )
 }
