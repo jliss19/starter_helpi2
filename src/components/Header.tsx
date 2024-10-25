@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import API from './pages/API';
 import './styles/Header.css';
 
 const Header: React.FC = () => {
@@ -15,7 +14,7 @@ const Header: React.FC = () => {
         <span>|</span>
         <Link to='/detailed'>Detailed Quiz</Link>
         <span>|</span>
-        <Link to='/api'>API</Link>
+        <Link to='/results'>Results</Link>
     </nav>
         </header>
         </div>
