@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import '../styles/Detailed.css';
 
 export function Detailed(): React.JSX.Element {
@@ -37,7 +37,8 @@ export function Detailed(): React.JSX.Element {
     const [q5Answer, setQ5Answer] = useState<string>(q5Options[0]);
     const [q6Answer, setQ6Answer] = useState<string>('');
     const [q7Answer, setQ7Answer] = useState<string>(q7Options[0]);
-    const [q8Answer, setQ8Answer] = useState<string>(''); // New state for Question 8
+    const [q8Answer, setQ8Answer] = useState<string>('');
+    const [submitMessage, setSubmitMessage] = useState<string>('');
 
     // Handlers for state updates
     function updateQ1(event: React.ChangeEvent<HTMLInputElement>) {
@@ -62,7 +63,37 @@ export function Detailed(): React.JSX.Element {
         setQ7Answer(event.target.value);
     }
     function updateQ8(event: React.ChangeEvent<HTMLInputElement>) {
-        setQ8Answer(event.target.value); // New handler for Question 8
+        setQ8Answer(event.target.value);
+    }
+
+    // Submit button handler
+    function handleSubmit() {
+        if (q1Answer && q4Answer && q6Answer && q8Answer) {
+            const quizResults = {
+                q1: q1Answer,
+                q2: q2Answer,
+                q3: q3Answer,
+                q4: q4Answer,
+                q5: q5Answer,
+                q6: q6Answer,
+                q7: q7Answer,
+                q8: q8Answer
+            };
+
+            setSubmitMessage(
+                `Thank you for completing the quiz! Here is a summary of your responses:
+                - Fulfillment Task: ${quizResults.q1}
+                - Energizing Skills: ${quizResults.q2}
+                - Approach to Problem-Solving: ${quizResults.q3}
+                - Engaging Activities: ${quizResults.q4}
+                - Motivation in Career: ${quizResults.q5}
+                - Perfect Workday: ${quizResults.q6}
+                - Five-Year Plan: ${quizResults.q7}
+                - Field of Study: ${quizResults.q8}`
+            );
+        } else {
+            setSubmitMessage('Please complete all questions before submitting.');
+        }
     }
 
     return (
@@ -70,7 +101,7 @@ export function Detailed(): React.JSX.Element {
             {/* Question 1 */}
             <div className="question">
                 <h3 className='questionText'>
-                    1. Describe a project or task, either personal or professional, that made you feel the most fulfilled or proud. What aspects of that experience were most rewarding to you?
+                    1. Describe a project or task, either personal or professional, that made you feel the most fulfilled or proud.
                 </h3>
                 <Form.Control
                     as='textarea'
@@ -178,7 +209,7 @@ export function Detailed(): React.JSX.Element {
                 ))}
             </div>
 
-            {/* Question 8 (New) */}
+            {/* Question 8 */}
             <div className="question">
                 <h3 className='questionText'>
                     8. What particular field of study would you like to focus on?
@@ -191,11 +222,11 @@ export function Detailed(): React.JSX.Element {
                 />
             </div>
 
-            {/* Debugging: Display Responses */}
-            <div className="responses">
-                <h3 className='questionText'>Your Responses:</h3>
-                <pre>{JSON.stringify({ q1Answer, q2Answer, q3Answer, q4Answer, q5Answer, q6Answer, q7Answer, q8Answer }, null, 2)}</pre>
-            </div>
+            {/* Submit Button */}
+            <Button onClick={handleSubmit}>Submit</Button>
+
+            {/* Display Submit Message */}
+            <p>{submitMessage}</p>
         </div>
     );
 }

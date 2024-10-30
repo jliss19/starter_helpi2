@@ -1,31 +1,31 @@
 import { BasicQuestions } from '../basicquestions';
-import React, {useState} from 'react';
-import {Button, Form} from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import "../styles/Basic.css";
 
 export function Basic(): React.JSX.Element {
-    const q1Options:string[]=[
-        'Remote','Hybrid','In-person'
+    const q1Options: string[] = [
+        'Remote', 'Hybrid', 'In-person'
     ];
-    const q2Options:string[]=[
-        '0-25,000','25,000-50,000','50,000-75,000','75,000-100,000'
+    const q2Options: string[] = [
+        '0-25,000', '25,000-50,000', '50,000-75,000', '75,000-100,000'
     ];
-    const q3Options:string[]=[
-        'Independently','In a team','No preference'
+    const q3Options: string[] = [
+        'Independently', 'In a team', 'No preference'
     ];
-    const q4Options:string[]=[
-        'People','Data','Technology','Nature'
+    const q4Options: string[] = [
+        'People', 'Data', 'Technology', 'Nature'
     ];
 
-    const [q1Answer,setQ1Answer] = useState<string>('');
-    const [q2Answer,setQ2Answer] = useState<string>('');
-    const [q3Answer,setQ3Answer] = useState<string>('');
-    const [q4Answer,setQ4Answer] = useState<string>('');
-    const [q5Answer,setQ5Answer] = useState<string>('');
-    const [q6Answer,setQ6Answer] = useState<string>('');
-    const [q7Answer,setQ7Answer] = useState<string>('');
-    const [submitMessage,setSubmitMessage] = useState<string>('');
-    
+    const [q1Answer, setQ1Answer] = useState<string>('');
+    const [q2Answer, setQ2Answer] = useState<string>('');
+    const [q3Answer, setQ3Answer] = useState<string>('');
+    const [q4Answer, setQ4Answer] = useState<string>('');
+    const [q5Answer, setQ5Answer] = useState<string>('');
+    const [q6Answer, setQ6Answer] = useState<string>('');
+    const [q7Answer, setQ7Answer] = useState<string>('');
+    const [submitMessage, setSubmitMessage] = useState<string>('');
+
     function updateQ1(event: React.ChangeEvent<HTMLInputElement>) {
         setQ1Answer(event.target.value);
     }
@@ -47,99 +47,126 @@ export function Basic(): React.JSX.Element {
     function updateQ7(event: React.ChangeEvent<HTMLInputElement>) {
         setQ7Answer(event.target.value);
     }
-    function submitButton(){
-        if (q1Answer !== '' && q2Answer !== '' && q3Answer !== '' && q4Answer !== '' && q5Answer !== '' && q6Answer !== '' && q7Answer !== ''){
-            setSubmitMessage('Congragulations! you have completed all required questions for our basic career quiz')
+
+    function submitButton() {
+        if (
+            q1Answer !== '' &&
+            q2Answer !== '' &&
+            q3Answer !== '' &&
+            q4Answer !== '' &&
+            q5Answer !== '' &&
+            q6Answer !== '' &&
+            q7Answer !== ''
+        ) {
+            const quizResults = {
+                preferredWorkEnvironment: q1Answer,
+                salaryRange: q2Answer,
+                workStyle: q3Answer,
+                interestArea: q4Answer,
+                hobbies: q5Answer,
+                studyBackground: q6Answer,
+                teamworkSkill: q7Answer
+            };
+
+            setSubmitMessage(`Congratulations! You have completed all required questions for our basic career quiz. Here are your responses:
+            - Preferred Work Environment: ${quizResults.preferredWorkEnvironment}
+            - Salary Range: ${quizResults.salaryRange}
+            - Work Style: ${quizResults.workStyle}
+            - Interest Area: ${quizResults.interestArea}
+            - Hobbies: ${quizResults.hobbies}
+            - Study Background: ${quizResults.studyBackground}
+            - Teamwork Skill: ${quizResults.teamworkSkill}`);
         } else {
-            setSubmitMessage('Not quite, make sure you have completed all provided questions above')
+            setSubmitMessage('Not quite, make sure you have completed all provided questions above');
         }
     }
+
     return (
-        <div className = 'Basic'>
+        <div className='Basic'>
             <Form.Group>
                 <Form.Label>What is your preferred work environment?</Form.Label>
-                {q1Options.map((q1option)=> (
+                {q1Options.map((q1option) => (
                     <Form.Check
-                        type = 'radio'
-                        key = {q1option}
-                        label = {q1option}
-                        value = {q1option}
-                        checked = {q1option === q1Answer}
-                        onChange = {updateQ1}
-                        name = 'q1'
+                        type='radio'
+                        key={q1option}
+                        label={q1option}
+                        value={q1option}
+                        checked={q1option === q1Answer}
+                        onChange={updateQ1}
+                        name='q1'
                     />
                 ))}
             </Form.Group>
             <Form.Group>
                 <Form.Label>What is your preferred salary range?</Form.Label>
-                {q2Options.map((q2option)=> (
+                {q2Options.map((q2option) => (
                     <Form.Check
-                        type = 'radio'
-                        key = {q2option}
-                        label = {q2option}
-                        value = {q2option}
-                        checked = {q2option === q2Answer}
-                        onChange = {updateQ2}
-                        name = 'q2'
+                        type='radio'
+                        key={q2option}
+                        label={q2option}
+                        value={q2option}
+                        checked={q2option === q2Answer}
+                        onChange={updateQ2}
+                        name='q2'
                     />
                 ))}
             </Form.Group>
             <Form.Group>
                 <Form.Label>How do you like to work on a task?</Form.Label>
-                {q3Options.map((q3option)=> (
+                {q3Options.map((q3option) => (
                     <Form.Check
-                        type = 'radio'
-                        key = {q3option}
-                        label = {q3option}
-                        value = {q3option}
-                        checked = {q3option === q3Answer}
-                        onChange = {updateQ3}
-                        name = 'q3'
+                        type='radio'
+                        key={q3option}
+                        label={q3option}
+                        value={q3option}
+                        checked={q3option === q3Answer}
+                        onChange={updateQ3}
+                        name='q3'
                     />
                 ))}
             </Form.Group>
             <Form.Group>
                 <Form.Label>What are you most interested in working with?</Form.Label>
-                {q4Options.map((q4option)=> (
+                {q4Options.map((q4option) => (
                     <Form.Check
-                        type = 'radio'
-                        key = {q4option}
-                        label = {q4option}
-                        value = {q4option}
-                        checked = {q4option === q4Answer}
-                        onChange = {updateQ4}
-                        name = 'q4'
+                        type='radio'
+                        key={q4option}
+                        label={q4option}
+                        value={q4option}
+                        checked={q4option === q4Answer}
+                        onChange={updateQ4}
+                        name='q4'
                     />
                 ))}
             </Form.Group>
             <Form.Group>
                 <Form.Label>What hobbies do you enjoy?</Form.Label>
                 <Form.Control
-                    type = 'text'
-                    value = {q5Answer}
-                    onChange = {updateQ5}
+                    type='text'
+                    value={q5Answer}
+                    onChange={updateQ5}
                 />
             </Form.Group>
             <Form.Group>
                 <Form.Label>What did you study in school?</Form.Label>
                 <Form.Control
-                    type = 'text'
-                    value = {q6Answer}
-                    onChange = {updateQ6}
+                    type='text'
+                    value={q6Answer}
+                    onChange={updateQ6}
                 />
-            </Form.Group>           
+            </Form.Group>
             <Form.Group>
                 <Form.Label>How well do you work with others?</Form.Label>
                 <Form.Control
-                    type = 'text'
-                    value = {q7Answer}
-                    onChange = {updateQ7}
+                    type='text'
+                    value={q7Answer}
+                    onChange={updateQ7}
                 />
             </Form.Group>
             <Button onClick={submitButton}>Submit</Button>
-            {submitMessage}
+            <p>{submitMessage}</p>
         </div>
-    )
+    );
 }
 
 export default Basic;
