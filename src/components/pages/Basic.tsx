@@ -1,14 +1,14 @@
-import { BasicQuestions } from '../basicquestions';
+//import { BasicQuestions } from '../basicquestions';
 import React, {useState} from 'react';
 import {Button, Form} from 'react-bootstrap';
-import "../styles/Basic.css";
+import "../styles/Detailed.css";
 
 export function Basic(): React.JSX.Element {
     const q1Options:string[]=[
         'Remote','Hybrid','In-person'
     ];
     const q2Options:string[]=[
-        '0-25,000','25,000-50,000','50,000-75,000','75,000-100,000'
+        'Full time','Part time','Internship','Temporary','Contract'
     ];
     const q3Options:string[]=[
         'Independently','In a team','No preference'
@@ -16,6 +16,15 @@ export function Basic(): React.JSX.Element {
     const q4Options:string[]=[
         'People','Data','Technology','Nature'
     ];
+    const questions:string[] = [
+        '1. What is your preferred work environment?',
+        '2. What type of job are you looking for?',
+        '3. How do you like to work on a task?',
+        '4. What are you most interested in working with?',
+        '5. What hobbies do you enjoy?',
+        '6. What did you study in school?',
+        '7. How well do you work with others?'
+    ]
 
     const [q1Answer,setQ1Answer] = useState<string>('');
     const [q2Answer,setQ2Answer] = useState<string>('');
@@ -55,9 +64,9 @@ export function Basic(): React.JSX.Element {
         }
     }
     return (
-        <div className = 'Basic'>
-            <Form.Group>
-                <Form.Label>What is your preferred work environment?</Form.Label>
+        <div className = 'Detailed'>
+            <Form.Group className='radio-group'>
+                <Form.Label className='questionText'>{questions[0]}</Form.Label>
                 {q1Options.map((q1option)=> (
                     <Form.Check
                         type = 'radio'
@@ -70,8 +79,8 @@ export function Basic(): React.JSX.Element {
                     />
                 ))}
             </Form.Group>
-            <Form.Group>
-                <Form.Label>What is your preferred salary range?</Form.Label>
+            <Form.Group className='radio-group'>
+                <Form.Label className='questionText'>{questions[1]}</Form.Label>
                 {q2Options.map((q2option)=> (
                     <Form.Check
                         type = 'radio'
@@ -84,10 +93,10 @@ export function Basic(): React.JSX.Element {
                     />
                 ))}
             </Form.Group>
-            <Form.Group>
-                <Form.Label>How do you like to work on a task?</Form.Label>
+            <Form.Group className='radio-group'>
+                <Form.Label className='questionText'>{questions[2]}</Form.Label>
                 {q3Options.map((q3option)=> (
-                    <Form.Check
+                    <Form.Check 
                         type = 'radio'
                         key = {q3option}
                         label = {q3option}
@@ -98,10 +107,10 @@ export function Basic(): React.JSX.Element {
                     />
                 ))}
             </Form.Group>
-            <Form.Group>
-                <Form.Label>What are you most interested in working with?</Form.Label>
+            <Form.Group className='radio-group'>
+                <Form.Label className='questionText'>{questions[3]}</Form.Label>
                 {q4Options.map((q4option)=> (
-                    <Form.Check
+                    <Form.Check 
                         type = 'radio'
                         key = {q4option}
                         label = {q4option}
@@ -112,28 +121,34 @@ export function Basic(): React.JSX.Element {
                     />
                 ))}
             </Form.Group>
-            <Form.Group>
-                <Form.Label>What hobbies do you enjoy?</Form.Label>
+            <Form.Group className='radio-group'>
+                <Form.Label className='questionText'>{questions[4]}</Form.Label>
                 <Form.Control
+                    as='textarea'
                     type = 'text'
                     value = {q5Answer}
                     onChange = {updateQ5}
+                    placeholder="Type your response here..."
                 />
             </Form.Group>
-            <Form.Group>
-                <Form.Label>What did you study in school?</Form.Label>
+            <Form.Group className='radio-group'>
+                <Form.Label className='questionText'>{questions[5]}</Form.Label>
                 <Form.Control
+                    as='textarea'
                     type = 'text'
                     value = {q6Answer}
                     onChange = {updateQ6}
+                    placeholder="Type your response here..."
                 />
             </Form.Group>           
-            <Form.Group>
-                <Form.Label>How well do you work with others?</Form.Label>
+            <Form.Group className='radio-group'>
+                <Form.Label className='questionText'>{questions[6]}</Form.Label>
                 <Form.Control
+                    as='textarea'
                     type = 'text'
                     value = {q7Answer}
                     onChange = {updateQ7}
+                    placeholder="Type your response here..."
                 />
             </Form.Group>
             <Button onClick={submitButton}>Submit</Button>
