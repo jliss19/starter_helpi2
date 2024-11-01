@@ -2,12 +2,42 @@
   text-align: left;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.left, .right {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: left;
+}
+
+.subtitle {
+  text-align: left;
+}
+
 /* Radio button group container */
 .radio-group {
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Align radio buttons under the question */
-    margin-left: 20px; /* Adjust this margin for further alignment */
+    margin-left: 50px; /* Adjust this margin for further alignment */
+  }
+
+  .radio-text {
+    font-size: 16px;
+    margin-left: 10px;
   }
   
   /* Container for radio buttons */
@@ -69,7 +99,33 @@
     font-size: 110%;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    margin-bottom: 10px;
+    padding: 10px;
     text-align: left;
   }
-  
+
+  .input-box {
+    width: 100%; /* Full-width input */
+    max-width: 100%; /* Limits the width on larger screens */
+    padding: 10px 15px;
+    font-size: 12px;
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 5px; /* Rounded corners */
+    outline: none;
+    transition: border-color 0.3s ease; /* Smooth focus transition */
+}
+
+.input-box:focus {
+    border-color: #007BFF; /* Blue border on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Soft blue shadow on focus */
+}
+
+.responses {
+  text-align: center;
+}
+
+.submit-button {
+  position: relative;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+}

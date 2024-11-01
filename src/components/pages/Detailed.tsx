@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import {Button, Form} from 'react-bootstrap';
+import {Form} from 'react-bootstrap';
 import '../styles/Detailed.css';
+import {Button} from '@mui/material';
+
 
 export function Detailed(): React.JSX.Element {
     // Multiple-choice options
@@ -67,7 +69,7 @@ export function Detailed(): React.JSX.Element {
     }
     function submitButton(){
       if (q1Answer !== '' && q2Answer !== '' && q3Answer !== '' && q4Answer !== '' && q5Answer !== '' && q6Answer !== '' && q7Answer !== '' && q8Answer !== ''){
-          setSubmitMessage('Congragulations! you have completed all required questions for our basic career quiz')
+          setSubmitMessage('Congragulations! You have completed all questions for our detailed career quiz!')
       } else {
           setSubmitMessage('Not quite, make sure you have completed all provided questions above')
       }
@@ -75,26 +77,16 @@ export function Detailed(): React.JSX.Element {
 
     return (
         <div className='Detailed'>
-            {/* Question 1 */}
-            <div className="question">
-                <h3 className='questionText'>
-                    1. Describe a project or task, either personal or professional, that made you feel the most fulfilled or proud. What aspects of that experience were most rewarding to you?
-                </h3>
-                <Form.Control
-                    as='textarea'
-                    placeholder="Type your response here..."
-                    value={q1Answer}
-                    onChange={updateQ1}
-                />
-            </div>
-
+            <div className = 'grid-container'>
+                <div className = 'left'> 
+                <h2 className='subtitle'><b>Multiple Choice Questions</b></h2>
             {/* Question 2 */}
             <div className="question">
                 <h3 className='questionText'>
-                    2. Which skills and activities energize you the most in your work or hobbies?
+                    Which skills and activities energize you the most in your work or hobbies?
                 </h3>
                 {q2Options.map((q2option) => (
-                    <Form.Check
+                    <Form.Check className='radio-text'
                         type='radio'
                         key={q2option}
                         label={q2option}
@@ -109,11 +101,11 @@ export function Detailed(): React.JSX.Element {
             {/* Question 3 */}
             <div className="question">
                 <h3 className='questionText'>
-                    3. How do you approach challenges and problem-solving in both your personal and professional life?
+                    How do you approach challenges and problem-solving in both your personal and professional life?
                 </h3>
                 {q3Options.map((q3option) => (
-                    <Form.Check
-                        type='radio'
+                    <Form.Check className='radio-text'
+                    type='radio'
                         key={q3option}
                         label={q3option}
                         value={q3option}
@@ -122,29 +114,15 @@ export function Detailed(): React.JSX.Element {
                         name='q3'
                     />
                 ))}
-            </div>
-
-            {/* Question 4 */}
-            <div className="question">
-                <h3 className='questionText'>
-                    4. What kind of work activities or tasks make you feel most engaged, excited, or in "flow"? Why do you think those activities resonate with you?
-                </h3>
-                <Form.Control
-                    as='textarea'
-                    placeholder="Type your response here..."
-                    value={q4Answer}
-                    onChange={updateQ4}
-                />
-            </div>
 
             {/* Question 5 */}
-            <div className="question">
+            <br/><div className="question">
                 <h3 className='questionText'>
-                    5. What motivates you most in a career, and what do you value most in a job?
+                    What motivates you most in a career, and what do you value most in a job?
                 </h3>
                 {q5Options.map((q5option) => (
-                    <Form.Check
-                        type='radio'
+                    <Form.Check className='radio-text'
+                    type='radio'
                         key={q5option}
                         label={q5option}
                         value={q5option}
@@ -154,28 +132,16 @@ export function Detailed(): React.JSX.Element {
                     />
                 ))}
             </div>
-
-            {/* Question 6 */}
-            <div className="question">
-                <h3 className='questionText'>
-                    6. If you could design your perfect workday, what would it look like in terms of tasks, interactions, and environment? How do you think this aligns with your long-term career goals?
-                </h3>
-                <Form.Control
-                    as='textarea'
-                    placeholder="Type your response here..."
-                    value={q6Answer}
-                    onChange={updateQ6}
-                />
             </div>
 
             {/* Question 7 */}
             <div className="question">
                 <h3 className='questionText'>
-                    7. Where do you see yourself in five years, and how do you plan to achieve that goal?
+                    Where do you see yourself in five years, and how do you plan to achieve that goal?
                 </h3>
                 {q7Options.map((q7option) => (
-                    <Form.Check
-                        type='radio'
+                    <Form.Check className='radio-text'
+                    type='radio'
                         key={q7option}
                         label={q7option}
                         value={q7option}
@@ -186,26 +152,97 @@ export function Detailed(): React.JSX.Element {
                 ))}
             </div>
 
+                </div>
+
+
+                <div className = 'right'>
+                <h2 className ="subtitle"><b>Short Response Questions</b></h2>
+
+            {/* Question 1 */}
+            <div className="question">
+                <h3 className='questionText'>
+                    Describe a project or task, either personal or professional, that made you feel the most fulfilled or proud. What aspects of that experience were most rewarding to you?
+                </h3>
+                <Form.Control
+    className="input-box"
+    as='textarea'
+    placeholder="Type your response here..."
+    value={q1Answer}
+    onChange={updateQ1}
+    rows={4} // Adjust the number of rows
+    maxLength={500} // Limit character input
+/>
+            </div>
+
+
+
+            {/* Question 4 */}
+            <div className="question">
+                <h3 className='questionText'>
+                    What kind of work activities or tasks make you feel most engaged, excited, or in "flow"? Why do you think those activities resonate with you?
+                </h3>
+                <Form.Control
+    className="input-box"
+    as='textarea'
+    placeholder="Type your response here..."
+    value={q4Answer}
+    onChange={updateQ4}
+    rows={4} // Adjust the number of rows
+    maxLength={500} // Limit character input
+/>
+
+            </div>
+
+
+
+            {/* Question 6 */}
+            <div className="question">
+                <h3 className='questionText'>
+                    If you could design your perfect workday, what would it look like in terms of tasks, interactions, and environment? How do you think this aligns with your long-term career goals?
+                </h3>
+                <Form.Control
+    className="input-box"
+    as='textarea'
+    placeholder="Type your response here..."
+    value={q6Answer}
+    onChange={updateQ6}
+    rows={4} // Adjust the number of rows
+    maxLength={500} // Limit character input
+/>
+
+            </div>
+
+
+
             {/* Question 8 (New) */}
             <div className="question">
                 <h3 className='questionText'>
-                    8. What particular field of study would you like to focus on?
+                    What particular field of study would you like to focus on?
                 </h3>
                 <Form.Control
-                    type='text'
-                    placeholder="Type your field of study here..."
-                    value={q8Answer}
-                    onChange={updateQ8}
-                />
+    className="input-box"
+    as='textarea'
+    placeholder="Type your response here..."
+    value={q8Answer}
+    onChange={updateQ8}
+    rows={4} // Adjust the number of rows
+    maxLength={500} // Limit character input
+/>
+
+            </div>
+            </div>
             </div>
 
-            {/* Debugging: Display Responses */}
+
+            {/* Debugging: Display Responses
             <div className="responses">
-                <h3 className='questionText'>Your Responses:</h3>
+                <h3>Your Responses:</h3>
                 <pre>{JSON.stringify({ q1Answer, q2Answer, q3Answer, q4Answer, q5Answer, q6Answer, q7Answer, q8Answer }, null, 2)}</pre>
+            </div> */}
+            <div className='submit-button'>
+            <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={submitButton}>Submit</Button>
+            <div style = {{padding: 10}}>{submitMessage}</div> 
             </div>
-            <Button onClick={submitButton}>Submit</Button>
-            {submitMessage}
         </div>
     );
 }

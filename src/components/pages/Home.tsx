@@ -1,7 +1,7 @@
-import React from 'react'
-import '../styles/Home.css'
-import { BasicQuizDescription } from '../basicquestiondescription';
-import DetailedDescription from '../detaileddescription';
+import React from 'react';
+import '../styles//Home.css'
+import { BasicQuizDescription2 } from '../basicquestiondescription';
+import DetailedDescription2 from '../detaileddescription';
 import {Button} from '@mui/material';
 import logo from './logo.svg';
 //import {Button} from 'react-bootstrap';
@@ -14,28 +14,23 @@ const Home: React.FC = () => {
     const navigate = useNavigate();
     return (
         <div>
-            <br />
-            <h1 className = 'title'><b><u style = {{padding: '10px'}}>Take a Career Quiz</u></b></h1>
-            <div style={{ fontStyle: 'italic', padding: '10px' }}>Choose what type of quiz you want to take</div>
-            <div className='grid-container'>
-            <h4 className='left'> Basic Career Questions:</h4>
-            <span className='right'><BasicQuizDescription></BasicQuizDescription></span>
+            <h5 className = 'title1'>Take a Career Quiz</h5>
+            <span style={{ fontStyle: 'italic' }}>Choose what type of quiz you want to take</span>
+            <div className='grid-container1'>
+            <h4 style = {{textAlign: 'right', padding: 20, textDecoration: 'underline'}}> Basic Career Questions:</h4>
+            <span className='right1'><BasicQuizDescription2></BasicQuizDescription2></span>
             </div>
             <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={() => navigate('/basic')}>
             Basic Quiz
         </Button>            
 
-            <div className='grid-container'>
-            <h4 className='left'> Detailed Career Questions:</h4>
-            <span className='right'><DetailedDescription></DetailedDescription></span>   
+            <div className='grid-container1'>
+            <h4 style={{textAlign: 'right', padding: 20, textDecoration: 'underline'}}> Detailed Career Questions:</h4>
+            <span className='right1'><DetailedDescription2></DetailedDescription2></span>   
             </div>
             <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={() => navigate('/detailed')}>
             Detailed Quiz
         </Button>  
-            <div className = 'Home-basicbutton'>
-            
-            </div>
-
         </div>
     )
 }

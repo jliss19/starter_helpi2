@@ -1,6 +1,7 @@
 import { BasicQuestions } from '../basicquestions';
 import React, {useState} from 'react';
-import {Button, Form} from 'react-bootstrap';
+import {Form} from 'react-bootstrap';
+import {Button} from '@mui/material';
 import "../styles/Basic.css";
 
 export function Basic(): React.JSX.Element {
@@ -56,6 +57,9 @@ export function Basic(): React.JSX.Element {
     }
     return (
         <div className = 'Basic'>
+            <div className = 'grid-container'>
+                <div className = 'left'> 
+
             <Form.Group>
                 <Form.Label>What is your preferred work environment?</Form.Label>
                 {q1Options.map((q1option)=> (
@@ -112,6 +116,9 @@ export function Basic(): React.JSX.Element {
                     />
                 ))}
             </Form.Group>
+            </div>
+
+            <div className = 'right'> 
             <Form.Group>
                 <Form.Label>What hobbies do you enjoy?</Form.Label>
                 <Form.Control
@@ -136,8 +143,14 @@ export function Basic(): React.JSX.Element {
                     onChange = {updateQ7}
                 />
             </Form.Group>
-            <Button onClick={submitButton}>Submit</Button>
-            {submitMessage}
+                </div>
+
+            </div>
+
+            <div className = 'submit-button'>
+            <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}}onClick={submitButton}>Submit</Button>
+            <div style = {{padding: 10}}>{submitMessage}</div> 
+            </div>
         </div>
     )
 }
