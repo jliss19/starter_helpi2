@@ -45,7 +45,7 @@ export function Basic2(): React.JSX.Element {
 
     return (
         <div className="career-quiz">
-            <h2 className='title1'>Rate Your Preferances</h2>
+            <h2 className='title2'>Rate Your Preferances</h2>
             {questions.map((question, index) => (
                 <div key={index} className="question">
                     <h3 className="question-text">{question}</h3>
