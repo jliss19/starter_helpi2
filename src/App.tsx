@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './components/pages/Home';
 import Basic from './components/pages/Basic';
 import Detailed from './components/pages/Detailed';
+import Basic2 from './components/pages/Basic2';
 import API from './components/pages/API';
 //import Footer from './components/Footer';
 import Header from './components/Header'
@@ -19,7 +20,7 @@ function App() {
       <main>
         <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/basic" element={<Basic />} />
+        <Route path="/basic" element={<Basic2 />} />
         <Route path="/detailed" element={<Detailed />} />
         <Route path="/api" element={<API />} />
         </Routes>

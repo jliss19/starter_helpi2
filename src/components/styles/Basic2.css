@@ -1,0 +1,63 @@
+.career-quiz {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    font-family: Arial, sans-serif;
+  }
+
+  .title1 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .question {
+    margin-bottom: 30px;
+  }
+  
+  .question-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .emoji-options {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+  }
+  
+  .emoji-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .emoji {
+    font-size: 2rem;
+    margin-bottom: 5px;
+  }
+  
+  .emoji-text {
+    font-size: 0.9rem;
+  }
+  
+  .radio-container input[type="radio"] {
+    margin-bottom: 5px;
+    cursor: pointer;
+    appearance: none;
+  }
+  
+  .radio-container input[type="radio"]:checked + .emoji {
+    border: 2px solid #007bff;
+    border-radius: 50%;
+  }
+  
+  .submit-button {
+    position: relative;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+  }
