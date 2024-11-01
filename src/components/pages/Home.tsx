@@ -3,9 +3,7 @@ import '../styles//Home.css'
 import { BasicQuizDescription2 } from '../basicquestiondescription';
 import DetailedDescription2 from '../detaileddescription';
 import {Button} from '@mui/material';
-import logo from './logo.svg';
-//import {Button} from 'react-bootstrap';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 //npm install @mui/material @emotion/react @emotion/styled
 

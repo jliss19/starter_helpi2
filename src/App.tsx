@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import { Button, Form } from 'react-bootstrap';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './components/pages/Home';
-import Basic from './components/pages/Basic';
 import Detailed from './components/pages/Detailed';
 import Basic2 from './components/pages/Basic2';
 import API from './components/pages/API';
