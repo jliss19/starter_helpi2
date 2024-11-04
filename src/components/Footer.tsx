@@ -1,25 +1,18 @@
 import React from 'react';
+import API from './API';
+import './styles/Footer.css';
 
 const Footer: React.FC = () => {
     return (
-        <footer style={styles.footer}>
-            <h1></h1>
+        <footer className = 'Footer'>
             <div>
-                <p>Contributors: Jonathan Liss, Ronald Kouloun, Mason Davis, Ronaldo Castillo</p>
+                <API />
             </div>
 
         </footer>
     )
 }
 
-const styles = {
-    footer: {
-        backgroundColor: '#575e67',
-        position: 'relative' as const,
-        bottom: 0,
-        width: '100%',
-        height: 80,
-    }
-}
+
 
 export default Footer;
