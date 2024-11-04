@@ -4,9 +4,12 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './components/pages/Home';
 import Detailed from './components/pages/Detailed';
 import Basic2 from './components/pages/Basic2';
-import API from './components/pages/API';
+import Results from './components/pages/Results';
+import API from './components/API';
 //import Footer from './components/Footer';
 import Header from './components/Header'
+import Footer from './components/Footer';
+
 
 
 function App() {
@@ -20,11 +23,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/basic" element={<Basic2 />} />
         <Route path="/detailed" element={<Detailed />} />
-        <Route path="/api" element={<API />} />
+        <Route path="/results" element={<Results />} />
         </Routes>
       </main>
     </div>
     </Router>
+    <Footer />
     </div>
   );
 }

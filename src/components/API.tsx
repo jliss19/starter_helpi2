@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {Form} from 'react-bootstrap'
 import {Button} from '@mui/material';
 
-import '../styles/API.css'
+import './styles/API.css';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
