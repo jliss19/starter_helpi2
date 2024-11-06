@@ -40,7 +40,8 @@ export function Detailed(): React.JSX.Element {
     const [q6Answer, setQ6Answer] = useState<string>('');
     const [q7Answer, setQ7Answer] = useState<string>('');
     const [q8Answer, setQ8Answer] = useState<string>(''); // New state for Question 8
-    const [submitMessage,setSubmitMessage] = useState<string>('');
+    const [submitMessage, setSubmitMessage] = useState<string>('');
+    const [questionAnswer, setQuestionAnswer] = useState<string[]>([]);
 
     // Handlers for state updates
     function updateQ1(event: React.ChangeEvent<HTMLInputElement>) {
@@ -73,7 +74,34 @@ export function Detailed(): React.JSX.Element {
       } else {
           setSubmitMessage('Not quite, make sure you have completed all provided questions above')
       }
-  }
+    }
+
+    const questions:string[] = [
+        "Describe a project or task, either personal or professional, that made you feel the most fulfilled or proud. What aspects of that experience were most rewarding to you?",
+        "Which skills and activities energize you the most in your work or hobbies?",
+        "How do you approach challenges and problem-solving in both your personal and professional life?",
+        "What kind of work activities or tasks make you feel most engaged, excited, or in 'flow'? Why do you think those activities resonate with you?",
+        "What motivates you most in a career, and what do you value most in a job?",
+        "If you could design your perfect workday, what would it look like in terms of tasks, interactions, and environment? How do you think this aligns with your long-term career goals?",
+        "Where do you see yourself in five years, and how do you plan to achieve that goal?",
+        "What particular field of study would you like to focus on?"
+    ]
+
+    const answers:string[] = [
+        q1Answer,q2Answer,q3Answer,q4Answer,q5Answer,q6Answer,q7Answer,q8Answer
+    ]
+
+    function questionsAndAnswersReturn(){
+        const submitReturn = questions.map((question,index) => (
+            `Question ${index + 1}: ${question}, Answer ${index + 1}: ${answers[index]}`
+        ))
+        setQuestionAnswer(submitReturn);
+    }
+
+    function handleSubmit() {
+        submitButton();
+        questionsAndAnswersReturn();
+    }
 
     return (
         <div className='Detailed'>
@@ -240,9 +268,10 @@ export function Detailed(): React.JSX.Element {
                 <pre>{JSON.stringify({ q1Answer, q2Answer, q3Answer, q4Answer, q5Answer, q6Answer, q7Answer, q8Answer }, null, 2)}</pre>
             </div> */}
             <div className='submit-button'>
-            <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={submitButton}>Submit</Button>
+            <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={handleSubmit}>Submit</Button>
             <div style = {{padding: 10}}>{submitMessage}</div> 
             </div>
+            <div>{questionAnswer}</div>
         </div>
     );
 }
