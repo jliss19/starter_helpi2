@@ -272,6 +272,7 @@ export function Detailed(): React.JSX.Element {
             <div style = {{padding: 10}}>{submitMessage}</div> 
             </div>
             <div>{questionAnswer}</div>
+            </div><br /><br /><br />
         </div>
     );
 }
