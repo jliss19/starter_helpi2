@@ -271,8 +271,6 @@ export function Detailed(): React.JSX.Element {
             <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={handleSubmit}>Submit</Button>
             <div style = {{padding: 10}}>{submitMessage}</div> 
             </div>
-            <div>{questionAnswer}</div>
-            </div><br /><br /><br />
         </div>
     );
 }
