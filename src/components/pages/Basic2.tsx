@@ -20,6 +20,7 @@ export function Basic2(): React.JSX.Element {
 
     const [submitMessage,setSubmitMessage] = useState<string>('');
 
+    const [questionAnswer,setQuestionAnswer] = useState<string[]>([]);
 
     function updateResponse(questionIndex: number, rating: number) {
         const newResponses = [...responses];
@@ -33,6 +34,18 @@ export function Basic2(): React.JSX.Element {
         } else {
             setSubmitMessage('Not quite, make sure you have completed all provided questions above')
         }
+    }
+
+    function questionsAndAnswersReturn(){
+        const submitReturn = questions.map((question,index) => (
+            `Question ${index + 1}: ${question}, Answer ${index + 1}: ${responses[index]}`
+        ))
+        setQuestionAnswer(submitReturn);
+    }
+
+    function handleSubmit(){
+        submitButton();
+        questionsAndAnswersReturn();
     }
 
     const emojiOptions = [
@@ -67,8 +80,10 @@ export function Basic2(): React.JSX.Element {
                 </div>
             ))}
             <div className='submit-button'>
-            <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={submitButton}>Submit</Button>
+            <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={handleSubmit}>Submit</Button>
             <div style = {{padding: 10}}>{submitMessage}</div> 
+            </div>
+            <div>{questionAnswer}</div> 
             </div><br /><br />       
              </div>
     );
