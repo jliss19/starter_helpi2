@@ -267,7 +267,7 @@ export function Detailed(): React.JSX.Element {
                 <h3>Your Responses:</h3>
                 <pre>{JSON.stringify({ q1Answer, q2Answer, q3Answer, q4Answer, q5Answer, q6Answer, q7Answer, q8Answer }, null, 2)}</pre>
             </div> */}
-            <div className='submit-button'>
+            <div className='submit-button3'>
             <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={handleSubmit}>Submit</Button>
             <div style = {{padding: 10}}>{submitMessage}</div> 
             </div>

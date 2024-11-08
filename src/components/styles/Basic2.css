@@ -55,9 +55,10 @@
     border-radius: 50%;
   }
   
-  .submit-button {
+  .submit-button1 {
     position: relative;
     align-items: center;
     text-align: center;
     padding: 10px;
+    margin-bottom: 7%;
   }
