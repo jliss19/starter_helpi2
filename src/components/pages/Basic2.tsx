@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, ProgressBar } from 'react-bootstrap';
 import '../styles/Basic2.css';
-import {Button} from '@mui/material';
-
+import { Button } from '@mui/material';
 
 export function Basic2(): React.JSX.Element {
     const questions = [
@@ -17,36 +16,41 @@ export function Basic2(): React.JSX.Element {
     ];
 
     const [responses, setResponses] = useState<number[]>(Array(questions.length).fill(-1));
+    const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+    const [submitMessage, setSubmitMessage] = useState<string>('');
 
-    const [submitMessage,setSubmitMessage] = useState<string>('');
-
-    const [questionAnswer,setQuestionAnswer] = useState<string[]>([]);
-
-    function updateResponse(questionIndex: number, rating: number) {
+    function updateResponse(rating: number) {
         const newResponses = [...responses];
-        newResponses[questionIndex] = rating;
+        newResponses[currentQuestion] = rating;
         setResponses(newResponses);
     }
-    
-    function submitButton(){
-        if (responses[0] !== -1 && responses[1] !== -1 && responses[2] !== -1 && responses[3] !== -1 && responses[4] !== -1 && responses[5] !== -1 && responses[6] !== -1 && responses[7] !== -1){
-            setSubmitMessage('Congragulations! You completed all questions for our basic career quiz!')
-        } else {
-            setSubmitMessage('Not quite, make sure you have completed all provided questions above')
+
+    function handleNext() {
+        if (currentQuestion < questions.length - 1) {
+            setCurrentQuestion(currentQuestion + 1);
         }
     }
 
-    function questionsAndAnswersReturn(){
-        const submitReturn = questions.map((question,index) => (
-            `Question ${index + 1}: ${question}, Answer ${index + 1}: ${responses[index]}`
-        ))
-        setQuestionAnswer(submitReturn);
+    function handlePrev() {
+        if (currentQuestion > 0) {
+            setCurrentQuestion(currentQuestion - 1);
+        }
     }
 
-    function handleSubmit(){
-        submitButton();
-        questionsAndAnswersReturn();
+    function handleSubmit() {
+        const unansweredQuestions = responses
+            .map((response, index) => (response === -1 ? index + 1 : null))
+            .filter(index => index !== null); // Collect unanswered question indices
+
+        if (unansweredQuestions.length === 0) {
+            setSubmitMessage('Congratulations! You completed all questions for our basic career quiz!');
+        } else {
+            setSubmitMessage(
+                `Not quite, make sure you have completed all provided questions! You missed: Questions ${unansweredQuestions.join(", ")}.`
+            );
+        }
     }
+
 
     const emojiOptions = [
         { value: 1, label: "😡", text: "Strongly Dislike" },
@@ -58,32 +62,52 @@ export function Basic2(): React.JSX.Element {
 
     return (
         <div className="career-quiz">
-            <h2 className='title2'>Rate Your Preferances</h2>
-            {questions.map((question, index) => (
-                <div key={index} className="question">
-                    <h3 className="question-text">{question}</h3>
-                    <div className="emoji-options">
-                        {emojiOptions.map((option) => (
-                            <div key={option.value} className="emoji-option">
-                                <Form.Check
-                                    type="radio"
-                                    name={`question-${index}`}
-                                    value={option.value}
-                                    checked={responses[index] === option.value}
-                                    onChange={() => updateResponse(index, option.value)}
-                                />
-                                <span className="emoji">{option.label}</span>
-                                <span className="emoji-text">{option.text}</span>
-                            </div>
-                        ))}
-                    </div>
+            <h2 className="title2">Rate Your Preferences</h2>
+            <div className="question">
+                <h3 className="question-text">{questions[currentQuestion]}</h3>
+                <div className="emoji-options">
+                    {emojiOptions.map((option) => (
+                        <div key={option.value} className="emoji-option">
+                            <Form.Check
+                                type="radio"
+                                name={`question-${currentQuestion}`}
+                                value={option.value}
+                                checked={responses[currentQuestion] === option.value}
+                                onChange={() => updateResponse(option.value)}
+                            />
+                            <span className="emoji">{option.label}</span>
+                            <span className="emoji-text">{option.text}</span>
+                        </div>
+                    ))}
                 </div>
-            ))}
-            <div className='submit-button'>
-            <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={handleSubmit}>Submit</Button>
-            <div style = {{padding: 10}}>{submitMessage}</div> 
-            </div>      
-             </div>
+            </div>
+            
+            <div className="navigation-buttons">
+                {currentQuestion > 0 && (
+                    <Button variant="contained" sx={{ backgroundColor: '#EFEFEF', color: '#333', marginRight: 2 }} onClick={handlePrev}>
+                        Prev
+                    </Button>
+                )}
+                {currentQuestion < questions.length - 1 ? (
+                    <Button variant="contained" sx={{ backgroundColor: '#EF233C' }} onClick={handleNext}>
+                        Next
+                    </Button>
+                ) : (
+                    <Button variant="contained" sx={{ backgroundColor: '#EF233C' }} onClick={handleSubmit}>
+                        Submit
+                    </Button>
+                )}
+            </div>
+
+            <div className="progress-container">
+                <span>{currentQuestion + 1}/{questions.length}</span>
+                <ProgressBar now={((currentQuestion + 1) / questions.length) * 100} />
+            </div>
+
+            <div className="submit-message">
+                {submitMessage && <p>{submitMessage}</p>}
+            </div>
+        </div>
     );
 }
 
