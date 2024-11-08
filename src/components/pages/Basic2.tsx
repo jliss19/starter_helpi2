@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import '../styles/Basic2.css';
-import {Button} from '@mui/material';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import OpenAI from 'openai';
 
+// Custom type for message structure
+type ChatMessage = {
+    role: 'user' | 'system' | 'assistant';
+    content: string;
+};
 
 export function Basic2(): React.JSX.Element {
     const questions = [
@@ -17,21 +24,59 @@ export function Basic2(): React.JSX.Element {
     ];
 
     const [responses, setResponses] = useState<number[]>(Array(questions.length).fill(-1));
-
-    const [submitMessage,setSubmitMessage] = useState<string>('');
-
+    const [submitMessage, setSubmitMessage] = useState<string>('');
+    const navigate = useNavigate();
 
     function updateResponse(questionIndex: number, rating: number) {
         const newResponses = [...responses];
         newResponses[questionIndex] = rating;
         setResponses(newResponses);
     }
-    
-    function submitButton(){
-        if (responses[0] !== -1 && responses[1] !== -1 && responses[2] !== -1 && responses[3] !== -1 && responses[4] !== -1 && responses[5] !== -1 && responses[6] !== -1 && responses[7] !== -1){
-            setSubmitMessage('Congragulations! You completed all questions for our basic career quiz!')
+
+    async function submitButton() {
+        if (responses.every(response => response !== -1)) {
+            setSubmitMessage('Congratulations! You completed all questions for our basic career quiz!');
+
+            const apiKey = localStorage.getItem('MYKEY');
+            if (!apiKey) {
+                setSubmitMessage('API key is missing. Please go to the API page to enter your key.');
+                navigate('/api');
+                return;
+            }
+
+            const openai = new OpenAI({ apiKey: JSON.parse(apiKey), dangerouslyAllowBrowser: true });
+
+            try {
+                // Define each message as a ChatMessage
+                const quizResponses: ChatMessage[] = responses.map((response, index) => ({
+                    role: 'user',
+                    content: `Q${index + 1}: ${questions[index]} - Rating: ${response}`
+                }));
+
+                const response = await openai.chat.completions.create({
+                    model: 'gpt-4-turbo',
+                    messages: [
+                        {
+                            role: 'system',
+                            content: 'Your job is a career advisor. You will receive a completed career quiz in question answer pairs. There are two quiz types (basic, detailed). Detailed quizzes have a question 8 that you will read, and provide jobs related to the answer provided. Should the answer to question 8 be nonsense or unrelated, disregard it. Provide 5 jobs minimum, 10 maximum. Provide a detailed description of what to expect for each job. No more than 3 sentences each.\n\nDo not include any extra text or information. ONLY YOUR CAREER RECOMMENDATIONS.'
+                        },
+                        ...quizResponses,
+                    ],
+                    temperature: 1,
+                    max_tokens: 2048,
+                    top_p: 1,
+                    frequency_penalty: 0,
+                    presence_penalty: 0,
+                });
+
+                const careerRecommendations = response.choices[0]?.message?.content || 'No recommendations found';
+                navigate('/api', { state: { careerRecommendations } });
+            } catch (error) {
+                setSubmitMessage('Error fetching recommendations. Please try again later.');
+                console.error(error);
+            }
         } else {
-            setSubmitMessage('Not quite, make sure you have completed all provided questions above')
+            setSubmitMessage('Not quite, make sure you have completed all provided questions above.');
         }
     }
 
@@ -43,9 +88,15 @@ export function Basic2(): React.JSX.Element {
         { value: 5, label: "😍", text: "Strongly Like" },
     ];
 
+    const formattedResponses = questions.map((question, index) => {
+        const selectedOption = emojiOptions.find(option => option.value === responses[index]);
+        const answer = selectedOption ? `${selectedOption.label} (${selectedOption.text})` : "No response";
+        return `Q: ${question}\nA: ${answer}`;
+    }).join('\n\n');
+
     return (
         <div className="career-quiz">
-            <h2 className='title2'>Rate Your Preferances</h2>
+            <h2 className='title2'>Rate Your Preferences</h2>
             {questions.map((question, index) => (
                 <div key={index} className="question">
                     <h3 className="question-text">{question}</h3>
@@ -67,10 +118,10 @@ export function Basic2(): React.JSX.Element {
                 </div>
             ))}
             <div className='submit-button'>
-            <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={submitButton}>Submit</Button>
-            <div style = {{padding: 10}}>{submitMessage}</div> 
+                <Button variant='contained' sx={{ backgroundColor: '#EF233C' }} onClick={submitButton}>Submit</Button>
+                <div style={{ padding: 10 }}>{submitMessage}</div>
             </div>       
-             </div>
+        </div>
     );
 }
 

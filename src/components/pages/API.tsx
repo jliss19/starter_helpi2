@@ -1,40 +1,44 @@
-import React from 'react'
-import { useState } from 'react';
-import {Form} from 'react-bootstrap'
-import {Button} from '@mui/material';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
+import { Button } from '@mui/material';
+import '../styles/API.css';
 
-import '../styles/API.css'
-
-//local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
-let keyData = "";
-const saveKeyData = "MYKEY";
-const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: <api_key_value here> in the local storage when you inspect
+let keyData = '';
+const saveKeyData = 'MYKEY';
+const prevKey = localStorage.getItem(saveKeyData);
 if (prevKey !== null) {
-  keyData = JSON.parse(prevKey);
+    keyData = JSON.parse(prevKey);
 }
-const API: React.FC = () => {
-    const [key, setKey] = useState<string>(keyData); //for api key input
-  
-  //sets the local storage item to the api key the user inputed
-  function handleSubmit() {
-    localStorage.setItem(saveKeyData, JSON.stringify(key));
-    window.location.reload(); //when making a mistake and changing the key again, I found that I have to reload the whole site before openai refreshes what it has stores for the local storage variable
-  }
 
-  //whenever there's a change it'll store the api key in a local state called key but it won't be set in the local storage until the user clicks the submit button
-  function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
-    setKey(event.target.value);
-  }
+const API: React.FC = () => {
+    const location = useLocation();
+    const careerRecommendations = location.state?.careerRecommendations || 'No recommendations available.';
+    const [key, setKey] = useState<string>(keyData);
+
+    function handleSubmit() {
+        localStorage.setItem(saveKeyData, JSON.stringify(key));
+        window.location.reload();
+    }
+
+    function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
+        setKey(event.target.value);
+    }
+
     return (
         <div className='API'>
-      <Form className='API-bar'>
-        <Form.Label></Form.Label>
-        <Form.Control style = {{width: '50%'}}type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
-        <br></br>
-        <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={handleSubmit}>Submit</Button>
-      </Form>
-      </div>
-    )
-}
+            <Form className='API-bar'>
+                <Form.Label></Form.Label>
+                <Form.Control style={{ width: '50%' }} type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
+                <br></br>
+                <Button variant='contained' sx={{ backgroundColor: '#EF233C' }} onClick={handleSubmit}>Submit</Button>
+            </Form>
+            <div className="response">
+                <h2>Career Recommendations</h2>
+                <pre>{careerRecommendations}</pre>
+            </div>
+        </div>
+    );
+};
 
 export default API;
