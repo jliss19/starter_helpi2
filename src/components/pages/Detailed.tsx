@@ -34,6 +34,7 @@ export function Detailed(): React.JSX.Element {
         if (currentQuestion > 0) setCurrentQuestion(currentQuestion - 1);
     }
 
+
     function handleSubmit() {
         const unansweredQuestions = questions
             .map((q, index) => (q.answer === '' ? index + 1 : null))
