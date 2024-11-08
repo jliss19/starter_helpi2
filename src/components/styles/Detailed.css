@@ -123,10 +123,9 @@
   text-align: center;
 }
 
-.submit-button3 {
+.submit-button {
   position: relative;
-    align-items: center;
-    text-align: center;
-    padding: 10px;
-    padding-bottom: 5%;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
 }
