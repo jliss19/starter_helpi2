@@ -40,7 +40,7 @@ export function Basic2(): React.JSX.Element {
     function handleSubmit() {
         const unansweredQuestions = responses
             .map((response, index) => (response === -1 ? index + 1 : null))
-            .filter(index => index !== null); // Collect unanswered question indices
+            .filter(index => index !== null);
 
         if (unansweredQuestions.length === 0) {
             setSubmitMessage('Congratulations! You completed all questions for our basic career quiz!');
@@ -49,18 +49,6 @@ export function Basic2(): React.JSX.Element {
                 `Not quite, make sure you have completed all provided questions! You missed: Questions ${unansweredQuestions.join(", ")}.`
             );
         }
-    }
-
-    function questionsAndAnswersReturn(){
-        const submitReturn = questions.map((question,index) => (
-            `Question ${index + 1}: ${question}, Answer ${index + 1}: ${responses[index]}`
-        ))
-        setQuestionAnswer(submitReturn);
-    }
-
-    function handleSubmit(){
-        submitButton();
-        questionsAndAnswersReturn();
     }
 
     const emojiOptions = [
