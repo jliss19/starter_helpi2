@@ -51,17 +51,6 @@ export function Basic2(): React.JSX.Element {
         }
     }
 
-    function questionsAndAnswersReturn(){
-        const submitReturn = questions.map((question,index) => (
-            `Question ${index + 1}: ${question}, Answer ${index + 1}: ${responses[index]}`
-        ))
-        setQuestionAnswer(submitReturn);
-    }
-
-    function handleSubmit(){
-        submitButton();
-        questionsAndAnswersReturn();
-    }
 
     const emojiOptions = [
         { value: 1, label: "😡", text: "Strongly Dislike" },
