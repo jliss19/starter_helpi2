@@ -79,7 +79,7 @@ export function Basic2(): React.JSX.Element {
                     </div>
                 </div>
             ))}
-            <div className='submit-button'>
+            <div className='submit-button1'>
             <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={handleSubmit}>Submit</Button>
             <div style = {{padding: 10}}>{submitMessage}</div> 
             </div>      
