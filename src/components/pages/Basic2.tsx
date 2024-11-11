@@ -37,28 +37,6 @@ export function Basic2(): React.JSX.Element {
         }
     }
 
-    async function handleSubmit() {
-        const unansweredQuestions = responses
-            .map((response, index) => (response === -1 ? index + 1 : null))
-            .filter(index => index !== null);
-
-        if (unansweredQuestions.length === 0) {
-            const apiKey = localStorage.getItem('MYKEY');
-            if (!apiKey) {
-                setSubmitMessage('API key is missing. Please go to the API page to enter your key.');
-                navigate('/api');
-                return;
-            }
-
-            const openai = new OpenAI({ apiKey: JSON.parse(apiKey), dangerouslyAllowBrowser: true });
-
-            try {
-                // Use explicit typing for quiz responses
-                const quizResponses = responses.map((response, index) => ({
-                    role: 'user' as const,
-                    content: `Q${index + 1}: ${questions[index]} - Rating: ${response}`
-                }));
-
     function handleSubmit() {
         const unansweredQuestions = responses
             .map((response, index) => (response === -1 ? index + 1 : null))
