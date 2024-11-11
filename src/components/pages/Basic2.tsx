@@ -40,6 +40,7 @@ export function Basic2(): React.JSX.Element {
         }
     }
 
+
     async function handleSubmit() {
         const unansweredQuestions = responses
             .map((response, index) => (response === -1 ? index + 1 : null))
@@ -84,6 +85,7 @@ export function Basic2(): React.JSX.Element {
                 setSubmitMessage('Error fetching recommendations. Please try again later.');
                 console.error(error);
             }
+=
         } else {
             setSubmitMessage(
                 `Not quite, make sure you have completed all provided questions! You missed: Questions ${unansweredQuestions.join(", ")}.`
