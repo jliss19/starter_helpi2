@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Form, ProgressBar } from 'react-bootstrap';
 import '../styles/Detailed.css';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import OpenAI from 'openai';
 
 export function Detailed(): React.JSX.Element {
     const [q1Answer, setQ1Answer] = useState('');
@@ -14,6 +16,7 @@ export function Detailed(): React.JSX.Element {
     const [q8Answer, setQ8Answer] = useState('');
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [submitMessage, setSubmitMessage] = useState('');
+    const navigate = useNavigate();
 
     const questions = [
         { type: 'multiple-choice', question: "Which skills and activities energize you the most in your work or hobbies?", options: ['Communication and leadership', 'Technical or hands-on problem-solving', 'Creative thinking and innovation', 'Research, data analysis, or learning new things'], answer: q1Answer, updateAnswer: setQ1Answer },
@@ -34,14 +37,50 @@ export function Detailed(): React.JSX.Element {
         if (currentQuestion > 0) setCurrentQuestion(currentQuestion - 1);
     }
 
-
-    function handleSubmit() {
+    async function handleSubmit() {
         const unansweredQuestions = questions
             .map((q, index) => (q.answer === '' ? index + 1 : null))
             .filter((index) => index !== null);
 
         if (unansweredQuestions.length === 0) {
-            setSubmitMessage("Congratulations! You completed all questions for our detailed career quiz!");
+            const apiKey = localStorage.getItem('MYKEY');
+            if (!apiKey) {
+                setSubmitMessage('API key is missing. Please go to the API page to enter your key.');
+                navigate('/api');
+                return;
+            }
+
+            const openai = new OpenAI({ apiKey: JSON.parse(apiKey), dangerouslyAllowBrowser: true });
+
+            try {
+                // Define each question as a message to the assistant
+                const quizResponses = questions.map((q, index) => ({
+                    role: 'user' as const,
+                    content: `Q${index + 1}: ${q.question} - Answer: ${q.answer}`
+                }));
+
+                const response = await openai.chat.completions.create({
+                    model: 'gpt-4-turbo',
+                    messages: [
+                        {
+                            role: 'system',
+                            content: 'Your job is a career advisor. You will receive a completed career quiz in question answer pairs. There are two quiz types (basic, detailed). Detailed quizzes have a question 8 that you will read, and provide jobs related to the answer provided. Should the answer to question 8 be nonsense or unrelated, disregard it. Provide 5 jobs minimum, 10 maximum. Provide a detailed description of what to expect for each job. No more than 3 sentences each.\n\nDo not include any extra text or information. ONLY YOUR CAREER RECOMMENDATIONS.'
+                        },
+                        ...quizResponses,
+                    ],
+                    temperature: 1,
+                    max_tokens: 2048,
+                    top_p: 1,
+                    frequency_penalty: 0,
+                    presence_penalty: 0,
+                });
+
+                const careerRecommendations = response.choices[0]?.message?.content || 'No recommendations found';
+                navigate('/results', { state: { careerRecommendations } });
+            } catch (error) {
+                setSubmitMessage('Error fetching recommendations. Please try again later.');
+                console.error(error);
+            }
         } else {
             setSubmitMessage(`Not quite, make sure you have completed all provided questions! You missed: Questions ${unansweredQuestions.join(", ")}.`);
         }
