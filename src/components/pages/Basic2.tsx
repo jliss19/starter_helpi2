@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, ProgressBar } from 'react-bootstrap';
 import '../styles/Basic2.css';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import OpenAI from 'openai';
 
-// Custom type for message structure
-type ChatMessage = {
-    role: 'user' | 'system' | 'assistant';
-    content: string;
-};
-
-export function Basic(): React.JSX.Element {
+export function Basic2(): React.JSX.Element {
     const questions = [
         "How much do you enjoy working with technology and computers?",
         "How do you feel about solving complex problems and puzzles?",
@@ -24,19 +18,34 @@ export function Basic(): React.JSX.Element {
     ];
 
     const [responses, setResponses] = useState<number[]>(Array(questions.length).fill(-1));
+    const [currentQuestion, setCurrentQuestion] = useState<number>(0);
     const [submitMessage, setSubmitMessage] = useState<string>('');
     const navigate = useNavigate();
 
-    function updateResponse(questionIndex: number, rating: number) {
+    function updateResponse(rating: number) {
         const newResponses = [...responses];
-        newResponses[questionIndex] = rating;
+        newResponses[currentQuestion] = rating;
         setResponses(newResponses);
     }
 
-    async function submitButton() {
-        if (responses.every(response => response !== -1)) {
-            setSubmitMessage('Congratulations! You completed all questions for our basic career quiz!');
+    function handleNext() {
+        if (currentQuestion < questions.length - 1) {
+            setCurrentQuestion(currentQuestion + 1);
+        }
+    }
 
+    function handlePrev() {
+        if (currentQuestion > 0) {
+            setCurrentQuestion(currentQuestion - 1);
+        }
+    }
+
+    async function handleSubmit() {
+        const unansweredQuestions = responses
+            .map((response, index) => (response === -1 ? index + 1 : null))
+            .filter(index => index !== null);
+
+        if (unansweredQuestions.length === 0) {
             const apiKey = localStorage.getItem('MYKEY');
             if (!apiKey) {
                 setSubmitMessage('API key is missing. Please go to the API page to enter your key.');
@@ -47,8 +56,9 @@ export function Basic(): React.JSX.Element {
             const openai = new OpenAI({ apiKey: JSON.parse(apiKey), dangerouslyAllowBrowser: true });
 
             try {
-                const quizResponses: ChatMessage[] = responses.map((response, index) => ({
-                    role: 'user',
+                // Use explicit typing for quiz responses
+                const quizResponses = responses.map((response, index) => ({
+                    role: 'user' as const,
                     content: `Q${index + 1}: ${questions[index]} - Rating: ${response}`
                 }));
 
@@ -75,7 +85,9 @@ export function Basic(): React.JSX.Element {
                 console.error(error);
             }
         } else {
-            setSubmitMessage('Not quite, make sure you have completed all provided questions above.');
+            setSubmitMessage(
+                `Not quite, make sure you have completed all provided questions! You missed: Questions ${unansweredQuestions.join(", ")}.`
+            );
         }
     }
 
@@ -87,41 +99,55 @@ export function Basic(): React.JSX.Element {
         { value: 5, label: "😍", text: "Strongly Like" },
     ];
 
-    const formattedResponses = questions.map((question, index) => {
-        const selectedOption = emojiOptions.find(option => option.value === responses[index]);
-        const answer = selectedOption ? `${selectedOption.label} (${selectedOption.text})` : "No response";
-        return `Q: ${question}\nA: ${answer}`;
-    }).join('\n\n');
-
     return (
         <div className="career-quiz">
-            <h2 className='title2'>Rate Your Preferences</h2>
-            {questions.map((question, index) => (
-                <div key={index} className="question">
-                    <h3 className="question-text">{question}</h3>
-                    <div className="emoji-options">
-                        {emojiOptions.map((option) => (
-                            <div key={option.value} className="emoji-option">
-                                <Form.Check
-                                    type="radio"
-                                    name={`question-${index}`}
-                                    value={option.value}
-                                    checked={responses[index] === option.value}
-                                    onChange={() => updateResponse(index, option.value)}
-                                />
-                                <span className="emoji">{option.label}</span>
-                                <span className="emoji-text">{option.text}</span>
-                            </div>
-                        ))}
-                    </div>
+            <h2 className="title2">Rate Your Preferences</h2>
+            <div className="question">
+                <h3 className="question-text">{questions[currentQuestion]}</h3>
+                <div className="emoji-options">
+                    {emojiOptions.map((option) => (
+                        <div key={option.value} className="emoji-option">
+                            <Form.Check
+                                type="radio"
+                                name={`question-${currentQuestion}`}
+                                value={option.value}
+                                checked={responses[currentQuestion] === option.value}
+                                onChange={() => updateResponse(option.value)}
+                            />
+                            <span className="emoji">{option.label}</span>
+                            <span className="emoji-text">{option.text}</span>
+                        </div>
+                    ))}
                 </div>
-            ))}
-            <div className='submit-button'>
-                <Button variant='contained' sx={{ backgroundColor: '#EF233C' }} onClick={submitButton}>Submit</Button>
-                <div style={{ padding: 10 }}>{submitMessage}</div>
-            </div>       
+            </div>
+            
+            <div className="navigation-buttons">
+                {currentQuestion > 0 && (
+                    <Button variant="contained" sx={{ backgroundColor: '#EFEFEF', color: '#333', marginRight: 2 }} onClick={handlePrev}>
+                        Prev
+                    </Button>
+                )}
+                {currentQuestion < questions.length - 1 ? (
+                    <Button variant="contained" sx={{ backgroundColor: '#EF233C' }} onClick={handleNext}>
+                        Next
+                    </Button>
+                ) : (
+                    <Button variant="contained" sx={{ backgroundColor: '#EF233C' }} onClick={handleSubmit}>
+                        Submit
+                    </Button>
+                )}
+            </div>
+
+            <div className="progress-container">
+                <span>{currentQuestion + 1}/{questions.length}</span>
+                <ProgressBar now={((currentQuestion + 1) / questions.length) * 100} />
+            </div>
+
+            <div className="submit-message">
+                {submitMessage && <p>{submitMessage}</p>}
+            </div>
         </div>
     );
 }
 
-export default Basic;
+export default Basic2;
