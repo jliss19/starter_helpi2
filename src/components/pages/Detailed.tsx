@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Form, ProgressBar } from 'react-bootstrap';
 import '../styles/Detailed.css';
 import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import OpenAI from 'openai';
 
 export function Detailed(): React.JSX.Element {
     const [q1Answer, setQ1Answer] = useState('');
@@ -16,16 +14,15 @@ export function Detailed(): React.JSX.Element {
     const [q8Answer, setQ8Answer] = useState('');
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [submitMessage, setSubmitMessage] = useState('');
-    const navigate = useNavigate();
 
     const questions = [
-        { type: 'multiple-choice', question: "Which skills and activities energize you the most in your work or hobbies?", options: ['Communication and leadership', 'Technical or hands-on problem-solving', 'Creative thinking and innovation', 'Research, data analysis, or learning new things'], answer: q1Answer, updateAnswer: setQ1Answer },
-        { type: 'multiple-choice', question: "How do you approach challenges and problem-solving in both your personal and professional life?", options: ['Plan ahead with clear steps and follow through', 'Work steadily, adjusting priorities as needed', 'Rely on creativity and thinking outside the box', 'Collaborate with others to find a solution'], answer: q2Answer, updateAnswer: setQ2Answer },
-        { type: 'multiple-choice', question: "What motivates you most in a career, and what do you value most in a job?", options: ['Financial stability and job security', 'Personal fulfillment and enjoying what I do', 'Career advancement and leadership opportunities', 'Work-life balance and flexibility'], answer: q3Answer, updateAnswer: setQ3Answer },
-        { type: 'multiple-choice', question: "Where do you see yourself in five years, and how do you plan to achieve that goal?", options: ['In a leadership role, focusing on decision-making and strategy', 'As an expert in my field, building deep technical skills', 'Exploring a new career path or creative field', 'Owning my own business or freelancing in a flexible environment'], answer: q4Answer, updateAnswer: setQ4Answer },
-        { type: 'text', question: "Describe a project or task that made you feel the most fulfilled or proud.", answer: q5Answer, updateAnswer: setQ5Answer },
-        { type: 'text', question: "What kind of work activities make you feel most engaged or excited?", answer: q6Answer, updateAnswer: setQ6Answer },
-        { type: 'text', question: "Describe your perfect workday, and how it aligns with your goals.", answer: q7Answer, updateAnswer: setQ7Answer },
+        { type: 'text', question: "Describe a project or task that made you feel the most fulfilled or proud.", answer: q1Answer, updateAnswer: setQ1Answer },
+        { type: 'multiple-choice', question: "Which skills and activities energize you the most in your work or hobbies?", options: ['Communication and leadership', 'Technical or hands-on problem-solving', 'Creative thinking and innovation', 'Research, data analysis, or learning new things'], answer: q2Answer, updateAnswer: setQ2Answer },
+        { type: 'multiple-choice', question: "How do you approach challenges and problem-solving in both your personal and professional life?", options: ['Plan ahead with clear steps and follow through', 'Work steadily, adjusting priorities as needed', 'Rely on creativity and thinking outside the box', 'Collaborate with others to find a solution'], answer: q3Answer, updateAnswer: setQ3Answer },
+        { type: 'text', question: "What kind of work activities make you feel most engaged or excited?", answer: q4Answer, updateAnswer: setQ4Answer },
+        { type: 'multiple-choice', question: "What motivates you most in a career, and what do you value most in a job?", options: ['Financial stability and job security', 'Personal fulfillment and enjoying what I do', 'Career advancement and leadership opportunities', 'Work-life balance and flexibility'], answer: q5Answer, updateAnswer: setQ5Answer },
+        { type: 'text', question: "Describe your perfect workday, and how it aligns with your goals.", answer: q6Answer, updateAnswer: setQ6Answer },
+        { type: 'multiple-choice', question: "Where do you see yourself in five years, and how do you plan to achieve that goal?", options: ['In a leadership role, focusing on decision-making and strategy', 'As an expert in my field, building deep technical skills', 'Exploring a new career path or creative field', 'Owning my own business or freelancing in a flexible environment'], answer: q7Answer, updateAnswer: setQ7Answer },
         { type: 'text', question: "What particular field of study would you like to focus on?", answer: q8Answer, updateAnswer: setQ8Answer }
     ];
 
@@ -37,50 +34,14 @@ export function Detailed(): React.JSX.Element {
         if (currentQuestion > 0) setCurrentQuestion(currentQuestion - 1);
     }
 
-    async function handleSubmit() {
+
+    function handleSubmit() {
         const unansweredQuestions = questions
             .map((q, index) => (q.answer === '' ? index + 1 : null))
             .filter((index) => index !== null);
 
         if (unansweredQuestions.length === 0) {
-            const apiKey = localStorage.getItem('MYKEY');
-            if (!apiKey) {
-                setSubmitMessage('API key is missing. Please go to the API page to enter your key.');
-                navigate('/api');
-                return;
-            }
-
-            const openai = new OpenAI({ apiKey: JSON.parse(apiKey), dangerouslyAllowBrowser: true });
-
-            try {
-                // Define each question as a message to the assistant
-                const quizResponses = questions.map((q, index) => ({
-                    role: 'user' as const,
-                    content: `Q${index + 1}: ${q.question} - Answer: ${q.answer}`
-                }));
-
-                const response = await openai.chat.completions.create({
-                    model: 'gpt-4-turbo',
-                    messages: [
-                        {
-                            role: 'system',
-                            content: 'Your job is a career advisor. You will receive a completed career quiz in question answer pairs. There are two quiz types (basic, detailed). Detailed quizzes have a question 8 that you will read, and provide jobs related to the answer provided. Should the answer to question 8 be nonsense or unrelated, disregard it. Provide 5 jobs minimum, 10 maximum. Provide a detailed description of what to expect for each job. No more than 3 sentences each.\n\nDo not include any extra text or information. ONLY YOUR CAREER RECOMMENDATIONS.'
-                        },
-                        ...quizResponses,
-                    ],
-                    temperature: 1,
-                    max_tokens: 2048,
-                    top_p: 1,
-                    frequency_penalty: 0,
-                    presence_penalty: 0,
-                });
-
-                const careerRecommendations = response.choices[0]?.message?.content || 'No recommendations found';
-                navigate('/results', { state: { careerRecommendations } });
-            } catch (error) {
-                setSubmitMessage('Error fetching recommendations. Please try again later.');
-                console.error(error);
-            }
+            setSubmitMessage("Congratulations! You completed all questions for our detailed career quiz!");
         } else {
             setSubmitMessage(`Not quite, make sure you have completed all provided questions! You missed: Questions ${unansweredQuestions.join(", ")}.`);
         }
