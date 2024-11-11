@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Form, ProgressBar } from 'react-bootstrap';
 import '../styles/Basic2.css';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import OpenAI from 'openai';
 
 export function Basic2(): React.JSX.Element {
     const questions = [
@@ -18,6 +20,7 @@ export function Basic2(): React.JSX.Element {
     const [responses, setResponses] = useState<number[]>(Array(questions.length).fill(-1));
     const [currentQuestion, setCurrentQuestion] = useState<number>(0);
     const [submitMessage, setSubmitMessage] = useState<string>('');
+    const navigate = useNavigate();
 
     function updateResponse(rating: number) {
         const newResponses = [...responses];
@@ -59,20 +62,34 @@ export function Basic2(): React.JSX.Element {
                     content: `Q${index + 1}: ${questions[index]} - Rating: ${response}`
                 }));
 
-    function handleSubmit() {
-        const unansweredQuestions = responses
-            .map((response, index) => (response === -1 ? index + 1 : null))
-            .filter(index => index !== null); // Collect unanswered question indices
+                const response = await openai.chat.completions.create({
+                    model: 'gpt-4-turbo',
+                    messages: [
+                        {
+                            role: 'system',
+                            content: 'Your job is a career advisor. You will receive a completed career quiz in question answer pairs. There are two quiz types (basic, detailed). Detailed quizzes have a question 8 that you will read, and provide jobs related to the answer provided. Should the answer to question 8 be nonsense or unrelated, disregard it. Provide 5 jobs minimum, 10 maximum. Provide a detailed description of what to expect for each job. No more than 3 sentences each.\n\nDo not include any extra text or information. ONLY YOUR CAREER RECOMMENDATIONS.'
+                        },
+                        ...quizResponses,
+                    ],
+                    temperature: 1,
+                    max_tokens: 2048,
+                    top_p: 1,
+                    frequency_penalty: 0,
+                    presence_penalty: 0,
+                });
 
-        if (unansweredQuestions.length === 0) {
-            setSubmitMessage('Congratulations! You completed all questions for our basic career quiz!');
+                const careerRecommendations = response.choices[0]?.message?.content || 'No recommendations found';
+                navigate('/results', { state: { careerRecommendations } });
+            } catch (error) {
+                setSubmitMessage('Error fetching recommendations. Please try again later.');
+                console.error(error);
+            }
         } else {
             setSubmitMessage(
                 `Not quite, make sure you have completed all provided questions! You missed: Questions ${unansweredQuestions.join(", ")}.`
             );
         }
     }
-
 
     const emojiOptions = [
         { value: 1, label: "😡", text: "Strongly Dislike" },
