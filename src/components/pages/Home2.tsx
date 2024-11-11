@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 //npm install @mui/material @emotion/react @emotion/styled
 
-
 const Home2: React.FC = () => {
     const navigate = useNavigate();
     return (
@@ -24,7 +23,7 @@ const Home2: React.FC = () => {
       </div>
       <div className="quiz-box">
         <h2>Detailed Quiz</h2>
-        <DetailedDescription2></DetailedDescription2>
+        <span><DetailedDescription2></DetailedDescription2></span>
         <Button variant = 'contained' sx = {{backgroundColor: '#EF233C'}} onClick={() => navigate('/detailed')}>
             Detailed Quiz
         </Button> 
