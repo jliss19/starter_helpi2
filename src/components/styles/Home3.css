@@ -1,0 +1,135 @@
+.title1 {
+    font-weight: bold;
+    color: white;
+    margin-top: 20px;
+    font-size: 50px ;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    height: 100vh;
+    width: 100%;
+
+
+  }
+
+.home-image {
+  background-image: url("../../assets/images/earthimage.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.rocket-container {
+    position: absolute;
+    left: 30%;
+    height: 30%;
+    width:50%;
+    top: 10%;
+}
+
+.rocket-image {
+    background-image: url("../../assets/images/rocket.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  height: 50%;
+}
+
+.star-container1 {
+    position: absolute;
+    left: 30%;
+    height: 30%;
+    width:60%;
+    top: 20%;
+}
+
+.star-image1 {
+    background-image: url("../../assets/images/starcrop.png");
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    background-size: contain;
+    transform: scale(0.5);
+    background-repeat: no-repeat;
+    
+}
+
+.text-box1 {
+    position: absolute;  /* Position the text box relative to the container */
+    top: 0%;  /* Position it below the star image */
+    background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background */
+    color: white;
+    right: 0%;
+    left: 40%;
+    padding: 10px;
+    border-radius: 5px;
+    visibility: hidden;  /* Hide the text box by default */
+    opacity: 0;  /* Make the text box invisible */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-weight: none ;
+    font-style: italic;
+}
+
+.star-container1:hover .text-box1 {
+    visibility: visible;  /* Make the text box visible */
+    opacity: 1;  /* Make the text box fully visible */
+}
+
+.star-image1:hover {
+    filter: brightness(1.5); /* Make the image brighter */
+}
+
+.star-container2 {
+    position: absolute;
+    right: 0%;
+    height: 30%;
+    width:60%;
+    bottom: 20%;
+}
+
+.star-image2 {
+    background-image: url("../../assets/images/starcrop.png");
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    right: -30%;
+    background-color: transparent;
+    background-size: contain;
+    transform: scale(0.5);
+    background-repeat: no-repeat;
+}
+
+.text-box2 {
+    position: absolute;  /* Position the text box relative to the container */
+    top: 10%;  /* Position it below the star image */
+    background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background */
+    color: white;
+    left: -5%;
+    right: 45%;
+    padding: 10px;
+    border-radius: 5px;
+    visibility: hidden;  /* Hide the text box by default */
+    opacity: 0;  /* Make the text box invisible */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-weight: none ;
+    font-style: italic;
+}
+
+.star-container2:hover .text-box2 {
+    visibility: visible;  /* Make the text box visible */
+    opacity: 1;  /* Make the text box fully visible */
+}
+
+.star-image2:hover {
+    filter: brightness(1.5); 
+}
+
+
+

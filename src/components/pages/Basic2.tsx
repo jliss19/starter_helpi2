@@ -4,6 +4,7 @@ import '../styles/Basic2.css';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import OpenAI from 'openai';
+import Header from '../Header';
 
 export function Basic2(): React.JSX.Element {
     const questions = [
@@ -100,6 +101,9 @@ export function Basic2(): React.JSX.Element {
     ];
 
     return (
+        <div>
+            <Header />
+
         <div className="career-quiz">
             <h2 className="title2">Rate Your Preferences</h2>
             <div className="question">
@@ -146,6 +150,7 @@ export function Basic2(): React.JSX.Element {
             <div className="submit-message">
                 {submitMessage && <p>{submitMessage}</p>}
             </div>
+        </div>
         </div>
     );
 }
