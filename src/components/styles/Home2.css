@@ -5,6 +5,14 @@
     font-size: 50px ;
 }
 
+.background-image {
+  background-image: url("../../assets/images/earthimage.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
 .quiz-container {
     display: flex;
     gap: 20px; 
