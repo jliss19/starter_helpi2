@@ -1,17 +1,11 @@
 import React from 'react';
 import './App.css';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Home2 from './components/pages/Home2';
 import Home3 from './components/pages/Home3';
 import Detailed from './components/pages/Detailed';
 import Basic2 from './components/pages/Basic2';
 import Results from './components/pages/Results';
-import API from './components/API';
-//import Footer from './components/Footer';
-import Header from './components/Header'
-import Footer from './components/Footer';
-import './components/styles/Home2.css';
-
+import Loading from './components/pages/Loading';
 
 
 function App() {
@@ -26,11 +20,11 @@ function App() {
         <Route path="/basic" element={<Basic2 />} />
         <Route path="/detailed" element={<Detailed />} />
         <Route path="/results" element={<Results />} />
+        <Route path="loading" element={<Loading />} />
         </Routes>
       </main>
     </div>
     </Router>
-    <Footer />
     </div>
     </div>
   );

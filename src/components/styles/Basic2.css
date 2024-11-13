@@ -6,6 +6,19 @@
     font-family: Arial, sans-serif;
   }
 
+  .basic-image {
+    background-image: url("../../assets/images/earthimage.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
+
+  }
+
   .title2 {
     text-align: center;
     font-weight: bold;

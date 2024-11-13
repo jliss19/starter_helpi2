@@ -3,6 +3,7 @@ import { Form, ProgressBar } from 'react-bootstrap';
 import '../styles/Detailed.css';
 import { Button } from '@mui/material';
 import Header from '../Header';
+import Footer from '../Footer';
 
 export function Detailed(): React.JSX.Element {
     const [q1Answer, setQ1Answer] = useState('');
@@ -51,7 +52,7 @@ export function Detailed(): React.JSX.Element {
     const currentQ = questions[currentQuestion];
 
     return (
-        <div>
+        <div className='detailed-image'>
             <Header />
         <div className="career-quiz">
             <h2 className="title2">Detailed Questions</h2>
@@ -112,6 +113,7 @@ export function Detailed(): React.JSX.Element {
                 {submitMessage && <p>{submitMessage}</p>}
             </div>
         </div>
+        <Footer />
         </div>
     );
 }

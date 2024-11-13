@@ -6,6 +6,7 @@ import {Button} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Header'
 import { Link } from 'react-router-dom';
+import Footer from '../Footer';
 
 
 const Home3: React.FC = () => {
@@ -30,6 +31,8 @@ const Home3: React.FC = () => {
             </Link>
             <div className='text-box2'><DetailedDescription2 /></div>
             </div>
+
+            <Footer />
          </div>
     )
 }

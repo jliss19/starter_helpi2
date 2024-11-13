@@ -5,6 +5,7 @@ import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import OpenAI from 'openai';
 import Header from '../Header';
+import Footer from '../Footer';
 
 export function Basic2(): React.JSX.Element {
     const questions = [
@@ -57,6 +58,7 @@ export function Basic2(): React.JSX.Element {
             const openai = new OpenAI({ apiKey: JSON.parse(apiKey), dangerouslyAllowBrowser: true });
 
             try {
+                navigate('/loading'); // Navigate to /loading while fetching recommendations
                 // Use explicit typing for quiz responses
                 const quizResponses = responses.map((response, index) => ({
                     role: 'user' as const,
@@ -101,7 +103,7 @@ export function Basic2(): React.JSX.Element {
     ];
 
     return (
-        <div>
+        <div className = 'basic-image'>
             <Header />
 
         <div className="career-quiz">
@@ -151,6 +153,7 @@ export function Basic2(): React.JSX.Element {
                 {submitMessage && <p>{submitMessage}</p>}
             </div>
         </div>
+        <Footer />
         </div>
     );
 }

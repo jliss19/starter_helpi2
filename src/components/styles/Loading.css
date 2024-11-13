@@ -1,0 +1,12 @@
+.loading-image {
+    background-image: url("../../assets/images/rocket-3972.gif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    filter: blur(5px);
+    transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
+
+}
