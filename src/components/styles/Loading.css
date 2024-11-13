@@ -6,7 +6,7 @@
     height: 100vh;
     width: 100%;
     overflow: hidden;
-    filter: blur(5px);
+    filter: contrast(160%) brightness(70%) blur(0px);
     transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
 
 }
