@@ -1,8 +1,34 @@
 .Results {
     text-align: center;
+    overflow: hidden;
+    display: relative;
 }
+
+.results-image {
+    background-image: url("../../assets/images/earthimage.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  }
 
 .title-Results {
     font-weight: bold;
     padding: 20px;
+}
+
+.results-container {
+    position: relative;
+    height: 100vh;
+    width: 35%;
+    margin: 0 auto;
+    bottom: 20px;
+}
+
+.results-content {
+    font-weight: none;
+    font-size: 22px;
 }

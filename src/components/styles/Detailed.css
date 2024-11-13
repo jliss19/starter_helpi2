@@ -2,6 +2,17 @@
   text-align: left;
 }
 
+.detailed-image {
+  background-image: url("../../assets/images/earthimage.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+height: 100vh;
+width: 100%;
+overflow: hidden;
+position: relative;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -128,4 +139,12 @@
   align-items: center;
   text-align: center;
   padding: 10px;
+}
+
+.navigation-buttonsNOT {
+  height: 20px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
