@@ -2,8 +2,6 @@ import React from 'react';
 import '../styles//Home3.css'
 import { BasicQuizDescription2 } from '../basicquestiondescription';
 import DetailedDescription2 from '../detaileddescription';
-import {Button} from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import Header from '../Header'
 import { Link } from 'react-router-dom';
 import Footer from '../Footer';
