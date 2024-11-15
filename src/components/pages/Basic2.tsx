@@ -105,6 +105,9 @@ export function Basic2(): React.JSX.Element {
     return (
         <div className = 'basic-image'>
             <Header />
+            <div className='rocket-container-basic'>
+            <div className='rocket-image-basic' />
+            </div>
         <div className="career-quiz">
             <h2 className="title2">Rate Your Preferences</h2>
             <div className="question">
@@ -125,7 +128,7 @@ export function Basic2(): React.JSX.Element {
                     ))}
                 </div>
             </div>
-            
+
             <div className="navigation-buttons">
                 {currentQuestion > 0 && (
                     <Button variant="contained" sx={{ backgroundColor: '#EFEFEF', color: '#333', marginRight: 2 }} onClick={handlePrev}>

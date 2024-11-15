@@ -75,15 +75,15 @@
     padding: 10px;
   }
 
-  .rocket-container {
+  .rocket-container-basic {
     position: absolute;
-    left: 30%;
+    left: 80%;
     height: 30%;
     width:50%;
-    top: 10%;
+    top: 20%;
 }
 
-.rocket-image {
+.rocket-image-basic {
   background-image: url("../../assets/images/rocket.png");
 background-size: contain;
 background-repeat: no-repeat;

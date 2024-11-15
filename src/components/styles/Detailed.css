@@ -148,3 +148,19 @@ position: relative;
   justify-content: center;
   display: flex;
 }
+
+.rocket-container-detailed {
+  position: absolute;
+  left: 83%;
+  height: 30%;
+  width:50%;
+  top: 45%;
+}
+
+.rocket-image-detailed {
+background-image: url("../../assets/images/rocket.png");
+background-size: contain;
+background-repeat: no-repeat;
+background-color: transparent;
+height: 50%;
+}

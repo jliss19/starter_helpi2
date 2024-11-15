@@ -32,3 +32,19 @@
     font-weight: none;
     font-size: 22px;
 }
+
+.rocket-container-results {
+    position: absolute;
+    left: 87%;
+    height: 30%;
+    width:50%;
+    top: 77%;
+  }
+  
+  .rocket-image-results {
+  background-image: url("../../assets/images/rocket.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  height: 50%;
+  }
