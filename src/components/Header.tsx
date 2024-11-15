@@ -15,6 +15,8 @@ const Header: React.FC = () => {
         <Link to='/detailed'>Detailed Quiz</Link>
         <span>|</span>
         <Link to='/results'>Results</Link>
+        <span>|</span>
+        <Link to='/about'>About</Link>
     </nav>
         </header>
         </div>

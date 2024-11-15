@@ -1,0 +1,63 @@
+.results2-background {
+    background-color: #231f20;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .mercury, .sun, .earth, .jupiter, .mars, .neptune, .saturn, .uranus, .venus {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .sun {
+    background-image: url("../../assets/images/planets/sun.png");
+    transform: translate(3%, -15%) scale(0.2);
+  }
+
+  .mercury {
+    background-image: url("../../assets/images/planets/mercury.png");
+    transform: translate(7%, 0%) scale(0.1);
+  }
+
+  .earth {
+    background-image: url("../../assets/images/planets/earth.png");
+    transform: translate(6%, 0%) scale(0.2);
+  }
+  
+  .jupiter {
+    background-image: url("../../assets/images/planets/jupiter.png");
+    transform: translate(5%, 0%) scale(0.2);
+  }
+
+  .neptune {
+    background-image: url("../../assets/images/planets/neptune.png");
+    transform: translate(4%, 0%) scale(0.2);
+  }
+
+  .saturn {
+    background-image: url("../../assets/images/planets/saturn.png");
+    transform: translate(3%, 0%) scale(0.2);
+  }
+
+  .uranus {
+    background-image: url("../../assets/images/planets/uranus.png");
+    transform: translate(2%, 0%) scale(0.2);
+  }
+
+  .venus {
+    background-image: url("../../assets/images/planets/venus.png");
+    transform: translate(1%, 0%) scale(0.2);
+  }
+
+  .mercury:hover {
+    filter: brightness(120%);
+  }
