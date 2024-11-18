@@ -14,13 +14,12 @@ const Results2: React.FC = () => {
             <div className = 'sun' />
             <div className = 'earth' />
             <div className = 'saturn' />
-            <div className = 'juptier' />
+            <div className = 'jupiter' />
             <div className = 'mercury' />
             <div className = 'venus' />
             <div className = 'mars' />
             <div className = 'uranus' />
             <div className = 'neptune' />
-            <Footer />
         </div>
     );
 }
