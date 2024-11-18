@@ -15,7 +15,7 @@ const About: React.FC = () => {
         {
             name: 'Mason Davis',
             github: 'https://github.com/masondavis11',
-            linkedin: 'NA',
+            linkedin: 'https://www.linkedin.com/in/mason-c-davis/',
             email: 'mcd@udel.edu'
         },
         {
@@ -34,7 +34,11 @@ const About: React.FC = () => {
     return (
         <div className="basic-image">
             <Header />
-            
+            <div>
+                {contributors.map((contributor, index)=> (
+                    <div>{contributor.name}</div>
+                ))}
+            </div>
         </div>
 
     )
