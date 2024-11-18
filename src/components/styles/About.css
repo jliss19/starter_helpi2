@@ -15,3 +15,19 @@
 
   }
 
+  .about-name-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .about-button {
+    text-align: center;
+    background-color: #EF233C;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 8px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }

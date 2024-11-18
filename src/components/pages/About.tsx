@@ -37,10 +37,10 @@ const About: React.FC = () => {
             <div>
                 {contributors.map((contributor, index)=> (
                     <div>
-                        <div>{contributor.name}</div>
-                        <a href={contributor.email}>Email</a>
-                        <a href={contributor.github}>GitHub</a>
-                        <a href={contributor.linkedin}>LinkedIn</a>
+                        <div className="about-name-text">{contributor.name}</div>
+                        <a href={contributor.email} className="about-button">Email</a>
+                        <a href={contributor.github} className="about-button">GitHub</a>
+                        <a href={contributor.linkedin} className="about-button">LinkedIn</a>
                     </div>
                 ))}
             </div>
