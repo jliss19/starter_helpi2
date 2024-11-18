@@ -32,7 +32,7 @@ const About: React.FC = () => {
         }
     ]
     return (
-        <div>
+        <div className="basic-image">
             <Header />
             
         </div>
