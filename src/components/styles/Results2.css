@@ -16,48 +16,56 @@
     background-color: transparent;
     background-size: contain;
     background-repeat: no-repeat;
+    transform-origin: center;
   }
 
   .sun {
     background-image: url("../../assets/images/planets/sun.png");
-    transform: translate(3%, -15%) scale(0.2);
+    transform: scale(0.3);
+    left: 6.5%;
+    bottom: -2%; 
   }
 
-  .mercury {
-    background-image: url("../../assets/images/planets/mercury.png");
-    transform: translate(7%, 0%) scale(0.1);
-  }
-
-  .earth {
-    background-image: url("../../assets/images/planets/earth.png");
-    transform: translate(6%, 0%) scale(0.2);
-  }
-  
   .jupiter {
     background-image: url("../../assets/images/planets/jupiter.png");
-    transform: translate(5%, 0%) scale(0.2);
-  }
-
-  .neptune {
-    background-image: url("../../assets/images/planets/neptune.png");
-    transform: translate(4%, 0%) scale(0.2);
+    transform: translate(10%, -42%) scale(0.2);
   }
 
   .saturn {
     background-image: url("../../assets/images/planets/saturn.png");
-    transform: translate(3%, 0%) scale(0.2);
+    transform: translate(-9%, 23%) scale(0.18);
   }
 
   .uranus {
     background-image: url("../../assets/images/planets/uranus.png");
-    transform: translate(2%, 0%) scale(0.2);
+    transform: translate(-15%, -28%) scale(0.18);
+  }
+
+  .neptune {
+    background-image: url("../../assets/images/planets/neptune.png");
+    transform: translate(20%, 20%) scale(0.165);
+  }
+
+  .earth {
+    background-image: url("../../assets/images/planets/earth.png");
+    transform: translate(30%, -30%) scale(0.16);
   }
 
   .venus {
     background-image: url("../../assets/images/planets/venus.png");
-    transform: translate(1%, 0%) scale(0.2);
+    transform: translate(-30%, 0%) scale(0.16);
   }
 
-  .mercury:hover {
+  .mars {
+    background-image: url("../../assets/images/planets/mars.png");
+    transform: translate(-30%, -10%) scale(0.155);
+  }
+
+  .mercury {
+    background-image: url("../../assets/images/planets/mercury.png");
+    transform: translate(30%, 0%) scale(0.15);
+  }
+
+  .sun:hover {
     filter: brightness(120%);
   }
