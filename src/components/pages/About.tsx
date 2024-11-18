@@ -36,7 +36,12 @@ const About: React.FC = () => {
             <Header />
             <div>
                 {contributors.map((contributor, index)=> (
-                    <div>{contributor.name}</div>
+                    <div>
+                        <div>{contributor.name}</div>
+                        <a href={contributor.email}>Email</a>
+                        <a href={contributor.github}>GitHub</a>
+                        <a href={contributor.linkedin}>LinkedIn</a>
+                    </div>
                 ))}
             </div>
         </div>
