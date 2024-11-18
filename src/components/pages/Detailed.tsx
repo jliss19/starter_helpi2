@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Form, ProgressBar } from 'react-bootstrap';
 import '../styles/Detailed.css';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import OpenAI from 'openai';
 import Header from '../Header';
 import Footer from '../Footer';
 
@@ -16,6 +18,7 @@ export function Detailed(): React.JSX.Element {
     const [q8Answer, setQ8Answer] = useState('');
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [submitMessage, setSubmitMessage] = useState('');
+    const navigate = useNavigate();
 
     const questions = [
         { type: 'text', question: "Describe a project or task that made you feel the most fulfilled or proud.", answer: q1Answer, updateAnswer: setQ1Answer },
@@ -36,14 +39,51 @@ export function Detailed(): React.JSX.Element {
         if (currentQuestion > 0) setCurrentQuestion(currentQuestion - 1);
     }
 
-
-    function handleSubmit() {
+    async function handleSubmit() {
         const unansweredQuestions = questions
             .map((q, index) => (q.answer === '' ? index + 1 : null))
             .filter((index) => index !== null);
 
         if (unansweredQuestions.length === 0) {
-            setSubmitMessage("Congratulations! You completed all questions for our detailed career quiz!");
+            const apiKey = localStorage.getItem('MYKEY');
+            if (!apiKey) {
+                setSubmitMessage('API key is missing. Please go to the API page to enter your key.');
+                navigate('/api');
+                return;
+            }
+
+            const openai = new OpenAI({ apiKey: JSON.parse(apiKey), dangerouslyAllowBrowser: true });
+
+            try {
+                navigate('/loading'); // Navigate to /loading while fetching recommendations
+
+                const quizResponses = questions.map((q, index) => ({
+                    role: 'user' as const,
+                    content: `Q${index + 1}: ${q.question} - Answer: ${q.answer}`
+                }));
+
+                const response = await openai.chat.completions.create({
+                    model: 'gpt-4-turbo',
+                    messages: [
+                        {
+                            role: 'system',
+                            content: 'Your job is a career advisor. You will receive a completed career quiz in question answer pairs. There are two quiz types (basic, detailed). Detailed quizzes have a question 8 that you will read, and provide jobs related to the answer provided. Should the answer to question 8 be nonsense or unrelated, disregard it. Provide 8 jobs. Provide a detailed description of what to expect for each job. No more than 3 sentences each.\n\nDo not include any extra text or information. ONLY YOUR CAREER RECOMMENDATIONS.'
+                        },
+                        ...quizResponses,
+                    ],
+                    temperature: 1,
+                    max_tokens: 2048,
+                    top_p: 1,
+                    frequency_penalty: 0,
+                    presence_penalty: 0,
+                });
+
+                const careerRecommendations = response.choices[0]?.message?.content || 'No recommendations found';
+                navigate('/results', { state: { careerRecommendations } });
+            } catch (error) {
+                setSubmitMessage('Error fetching recommendations. Please try again later.');
+                console.error(error);
+            }
         } else {
             setSubmitMessage(`Not quite, make sure you have completed all provided questions! You missed: Questions ${unansweredQuestions.join(", ")}.`);
         }
@@ -52,68 +92,70 @@ export function Detailed(): React.JSX.Element {
     const currentQ = questions[currentQuestion];
 
     return (
-        <div className='detailed-image'>
+        <div className="detailed-image">
             <Header />
-        <div className="career-quiz">
-            <h2 className="title2">Detailed Questions</h2>
+
+            <div className="career-quiz">
+                <h2 className="title2">Detailed Questions</h2>
+                
+                <div className="question">
+                    <h3 className="question-text">{currentQ.question}</h3>
+
+                    {currentQ.type === 'multiple-choice' ? (
+                        <div className="emoji-options">
+                            {currentQ.options!.map((option) => (
+                                <Form.Check
+                                    key={option}
+                                    type="radio"
+                                    label={option}
+                                    value={option}
+                                    checked={currentQ.answer === option}
+                                    onChange={() => currentQ.updateAnswer(option)}
+                                    style={{ margin: '5px 0' }}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <Form.Control
+                            as="textarea"
+                            value={currentQ.answer}
+                            onChange={(e) => currentQ.updateAnswer(e.target.value)}
+                            rows={3}
+                            maxLength={500}
+                            placeholder="Type your response here..."
+                            style={{ width: '100%', margin: '10px 0' }}
+                        />
+                    )}
+                </div>
+                
+                <div className="navigation-buttons">
+                    {currentQuestion > 0 && (
+                        <Button variant="contained" sx={{ backgroundColor: '#EFEFEF', color: '#333', marginRight: 2 }} onClick={handlePrev}>
+                            Prev
+                        </Button>
+                    )}
+                    {currentQuestion < questions.length - 1 ? (
+                        <Button variant="contained" sx={{ backgroundColor: '#EF233C' }} onClick={handleNext}>
+                            Next
+                        </Button>
+                    ) : (
+                        <Button variant="contained" sx={{ backgroundColor: '#EF233C' }} onClick={handleSubmit}>
+                            Submit
+                        </Button>
+                    )}
+                </div>
+
+                <div className="progress-container">
+                    <span>{currentQuestion + 1}/{questions.length}</span>
+                    <ProgressBar now={((currentQuestion + 1) / questions.length) * 100} style={{ height: '15px', marginTop: '5px' }} />
+                </div>
+
+                <div className="submit-message">
+                    {submitMessage && <p>{submitMessage}</p>}
+                </div>
+            </div>
             
-            <div className="question">
-                <h3 className="question-text">{currentQ.question}</h3>
-
-                {currentQ.type === 'multiple-choice' ? (
-                    <div className="emoji-options">
-                        {currentQ.options!.map((option) => (
-                            <Form.Check
-                                key={option}
-                                type="radio"
-                                label={option}
-                                value={option}
-                                checked={currentQ.answer === option}
-                                onChange={() => currentQ.updateAnswer(option)}
-                                style={{ margin: '5px 0' }}
-                            />
-                        ))}
-                    </div>
-                ) : (
-                    <Form.Control
-                        as="textarea"
-                        value={currentQ.answer}
-                        onChange={(e) => currentQ.updateAnswer(e.target.value)}
-                        rows={3}
-                        maxLength={500}
-                        placeholder="Type your response here..."
-                        style={{ width: '100%', margin: '10px 0' }}
-                    />
-                )}
-            </div>
-            
-            <div className="navigation-buttons">
-                {currentQuestion > 0 && (
-                    <Button variant="contained" sx={{ backgroundColor: '#EFEFEF', color: '#333', marginRight: 2 }} onClick={handlePrev}>
-                        Prev
-                    </Button>
-                )}
-                {currentQuestion < questions.length - 1 ? (
-                    <Button variant="contained" sx={{ backgroundColor: '#EF233C' }} onClick={handleNext}>
-                        Next
-                    </Button>
-                ) : (
-                    <Button variant="contained" sx={{ backgroundColor: '#EF233C' }} onClick={handleSubmit}>
-                        Submit
-                    </Button>
-                )}
-            </div>
-
-            <div className="progress-container">
-                <span>{currentQuestion + 1}/{questions.length}</span>
-                <ProgressBar now={((currentQuestion + 1) / questions.length) * 100} style={{ height: '15px', marginTop: '5px' }} />
-            </div>
-
-            <div className="submit-message">
-                {submitMessage && <p>{submitMessage}</p>}
-            </div>
-        </div>
-        <Footer />
+            <Footer />
         </div>
     );
 }
