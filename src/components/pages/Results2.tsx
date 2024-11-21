@@ -11,6 +11,7 @@ const Results2: React.FC = () => {
     return (
         <div className = "results2-background">
             <Header />
+            {/* <div className = 'rocket' /> */}
             <div className = 'sun' />
             <div className = 'earth' />
             <div className = 'saturn' />

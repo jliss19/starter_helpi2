@@ -1,4 +1,5 @@
 .results2-background {
+  background-image: url('../../assets/images/space.png');
     background-color: #231f20;
     background-size: cover;
     background-position: center;
@@ -9,7 +10,7 @@
     position: relative;
   }
 
-  .mercury, .sun, .earth, .jupiter, .mars, .neptune, .saturn, .uranus, .venus {
+  .mercury, .sun, .earth, .jupiter, .mars, .neptune, .saturn, .uranus, .venus, .rocket {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -19,51 +20,55 @@
     transform-origin: center;
   }
 
+  .rocket {
+    background-image: url("../../assets/images/rocket.png");
+    transform: scale(0.3);
+}
   .sun {
     background-image: url("../../assets/images/planets/sun.png");
-    transform: scale(0.3);
-    left: 6.5%;
-    bottom: -2%; 
-  }
-
-  .jupiter {
-    background-image: url("../../assets/images/planets/jupiter.png");
-    transform: translate(10%, -42%) scale(0.2);
-  }
-
-  .saturn {
-    background-image: url("../../assets/images/planets/saturn.png");
-    transform: translate(-9%, 23%) scale(0.18);
-  }
-
-  .uranus {
-    background-image: url("../../assets/images/planets/uranus.png");
-    transform: translate(-15%, -28%) scale(0.18);
-  }
-
-  .neptune {
-    background-image: url("../../assets/images/planets/neptune.png");
-    transform: translate(20%, 20%) scale(0.165);
-  }
-
-  .earth {
-    background-image: url("../../assets/images/planets/earth.png");
-    transform: translate(30%, -30%) scale(0.16);
-  }
-
-  .venus {
-    background-image: url("../../assets/images/planets/venus.png");
-    transform: translate(-30%, 0%) scale(0.16);
+    transform: scale(0.35);
+    left: 7.5%;
+    bottom: 0%; 
   }
 
   .mars {
     background-image: url("../../assets/images/planets/mars.png");
-    transform: translate(-30%, -10%) scale(0.155);
+    transform: translate(3%, -44%) scale(0.155);
+  }
+
+  .uranus {
+    background-image: url("../../assets/images/planets/uranus.png");
+    transform: translate(24%, -33%) scale(0.18);
+  }
+
+  .saturn {
+    background-image: url("../../assets/images/planets/saturn.png");
+    transform: translate(37%, -8%) scale(0.18);
+  }
+
+  .neptune {
+    background-image: url("../../assets/images/planets/neptune.png");
+    transform: translate(24%, 16%) scale(0.165);
+  }
+
+  .venus {
+    background-image: url("../../assets/images/planets/venus.png");
+    transform: translate(4%, 26%) scale(0.16);
+  }
+
+  .earth {
+    background-image: url("../../assets/images/planets/earth.png");
+    transform: translate(-17%, 18%) scale(0.16);
+  }
+
+  .jupiter {
+    background-image: url("../../assets/images/planets/jupiter.png");
+    transform: translate(-28%, -8%) scale(0.2);
   }
 
   .mercury {
     background-image: url("../../assets/images/planets/mercury.png");
-    transform: translate(30%, 0%) scale(0.15);
+    transform: translate(-17%, -34%) scale(0.15);
   }
 
   .sun:hover {
