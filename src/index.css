@@ -3,6 +3,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, boVerdana, Geneva, Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: url('./assets/images/rocketicon.png') default;
+
 }
 
 code {
