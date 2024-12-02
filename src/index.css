@@ -3,11 +3,15 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, boVerdana, Geneva, Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: url('./assets/images/rocketicon.png') default;
+  cursor: url('./assets/images/rocketicon.cur'), auto;
 
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a:hover {
+  cursor: url('./assets/images/hover_cursor.cur'), pointer;
 }
