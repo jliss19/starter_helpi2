@@ -8,6 +8,7 @@
     width: 100%;
     overflow: hidden;
     position: relative;
+
   }
 
   .mercury, .sun, .earth, .jupiter, .mars, .neptune, .saturn, .uranus, .venus, .rocket {
@@ -25,7 +26,11 @@
   .mercury:hover, .earth:hover, .jupiter:hover, 
 .mars:hover, .neptune:hover, .saturn:hover, .uranus:hover, 
 .venus:hover, .rocket:hover {
-    filter: brightness(1.5); 
+    filter: brightness(1.4); 
+}
+
+.mercury-text, .sun-text, .earth-text, .jupiter-text, .mars-text, .neptune-text, .saturn-text, .uranus-text, .venus-text, .rocket-text {
+  text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.7); 
 }
 
   .rocket {

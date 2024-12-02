@@ -4,6 +4,17 @@ import '../styles/Results2.css';
 import Header from '../Header';
 import Footer from '../Footer';
 
+const MarsText: React.FC = () => {
+    return (
+        <div className = 'mars-text'>
+            <h1>Results</h1>
+            <p></p>
+        </div>
+    );
+}
+
+
+
 const Results2: React.FC = () => {
     const location = useLocation();
     const careerRecommendations = location.state?.careerRecommendations || 'No recommendations available.';
