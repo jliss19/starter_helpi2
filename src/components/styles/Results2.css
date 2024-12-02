@@ -33,7 +33,7 @@
 
   .mars {
     background-image: url("../../assets/images/planets/mars.png");
-    transform: translate(3%, -44%) scale(0.155);
+    transform: translate(2.5%, -44%) scale(0.155);
   }
 
   .uranus {
@@ -53,7 +53,7 @@
 
   .venus {
     background-image: url("../../assets/images/planets/venus.png");
-    transform: translate(4%, 26%) scale(0.16);
+    transform: translate(3%, 28%) scale(0.16);
   }
 
   .earth {
