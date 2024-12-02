@@ -53,8 +53,9 @@ export function Detailed(): React.JSX.Element {
 
     return (
         <div className='detailed-image'>
+            <div className='asteroid-image2' />
             <Header />
-        <div className="career-quiz">
+        <div className="detailed-quiz">
             <h2 className="title2">Detailed Questions</h2>
             
             <div className="question">

@@ -1,23 +1,46 @@
-.career-quiz {
+  .basic-image {
+    background-image: url("../../assets/images/space.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+
+  }
+  
+  .asteroid-image1 {
+    background-image: url("../../assets/images/asteroid.png");
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    position: absolute; 
+    top: -5vh;
+    left: 4.5vw;
+    z-index: 1;
+    opacity: 1; 
+    pointer-events: none;
+    scale: 0.7;
+  }
+
+  .basic-quiz {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     text-align: left;
     font-family: Arial, sans-serif;
+    z-index: 2;
+    position: relative;
+    top: 23%;
   }
 
-  .basic-image {
-    background-image: url("../../assets/images/space.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
-
-  }
+  .basic-quiz {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
 
   .title2 {
     text-align: center;

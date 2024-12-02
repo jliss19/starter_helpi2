@@ -1,9 +1,12 @@
-.About {
+.about-container {
     text-align: center;
+    transform: translate(0, 500%);
+    height: 100%;
+    margin: 0 auto;
 }
 
 .basic-image {
-    background-image: url("../../assets/images/earthimage.jpg");
+    background-image: url("../../assets/images/space.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

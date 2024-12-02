@@ -104,9 +104,12 @@ export function Basic2(): React.JSX.Element {
 
     return (
         <div className = 'basic-image'>
-            <Header />
+            <div className = 'asteroid-image1' />
 
-        <div className="career-quiz">
+            <Header />
+            
+
+        <div className="basic-quiz">
             <h2 className="title2">Rate Your Preferences</h2>
             <div className="question">
                 <h3 className="question-text">{questions[currentQuestion]}</h3>
