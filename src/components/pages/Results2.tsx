@@ -24,7 +24,7 @@ const Results2: React.FC = () => {
             <Header />
             {/* <div className = 'rocket' /> */}
             <div className = 'sun'>
-                <div className='sun-text'>Job</div>
+                <div className='sun-text'>Computer Science</div>
             </div>
             <div className = 'earth'>
                 <div className='earth-text'>Job</div>
