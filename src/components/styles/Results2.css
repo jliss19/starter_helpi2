@@ -18,7 +18,15 @@
     background-size: contain;
     background-repeat: no-repeat;
     transform-origin: center;
+    transition: filter 0.3s ease; 
+
   }
+
+  .mercury:hover, .earth:hover, .jupiter:hover, 
+.mars:hover, .neptune:hover, .saturn:hover, .uranus:hover, 
+.venus:hover, .rocket:hover {
+    filter: brightness(1.5); 
+}
 
   .rocket {
     background-image: url("../../assets/images/rocket.png");
@@ -33,44 +41,210 @@
 
   .mars {
     background-image: url("../../assets/images/planets/mars.png");
-    transform: translate(3.3vw, -44%) scale(0.155);
+    transform: scale(0.155);
+    left: 3.3vw;
+    top: -37vh;
   }
+
+  .mars-text {
+    position: relative;  
+    height: 50vh;
+    width: 50vw;
+    top: 20%;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    visibility: hidden;  
+    opacity: 0;  
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-weight: none ;
+    font-style: italic;
+    font-size: 20vw;
+  }
+
+.mars:hover .mars-text {
+    visibility: visible;  
+    opacity: 1;
+}
 
   .uranus {
     background-image: url("../../assets/images/planets/uranus.png");
     transform: translate(24%, -33%) scale(0.18);
   }
 
+  .uranus-text {
+    position: relative;  
+    height: 50vh;
+    width: 50vw;
+    top: 20%;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    visibility: hidden;  
+    opacity: 0;  
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-weight: none ;
+    font-style: italic;
+    font-size: 20vw;
+  }
+
+.uranus:hover .uranus-text {
+    visibility: visible;  
+    opacity: 1;
+}
+
   .saturn {
     background-image: url("../../assets/images/planets/saturn.png");
     transform: translate(37%, -8%) scale(0.18);
   }
+
+  .saturn-text {
+    position: relative;  
+    height: 50vh;
+    width: 50vw;
+    top: 20%;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    visibility: hidden;  
+    opacity: 0;  
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-weight: none ;
+    font-style: italic;
+    font-size: 20vw;
+  }
+
+.saturn:hover .saturn-text {
+    visibility: visible;  
+    opacity: 1;
+}
 
   .neptune {
     background-image: url("../../assets/images/planets/neptune.png");
     transform: translate(24%, 16%) scale(0.165);
   }
 
+  .neptune-text {
+    position: relative;  
+    height: 50vh;
+    width: 50vw;
+    top: 20%;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    visibility: hidden;  
+    opacity: 0;  
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-weight: none ;
+    font-style: italic;
+    font-size: 20vw;
+  }
+
+.neptune:hover .neptune-text {
+    visibility: visible;  
+    opacity: 1;
+}
+
   .venus {
     background-image: url("../../assets/images/planets/venus.png");
     transform: translate(3.5vw, 28%) scale(0.16);
   }
+
+  .venus-text {
+    position: relative;  
+    height: 50vh;
+    width: 50vw;
+    top: 20%;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    visibility: hidden;  
+    opacity: 0;  
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-weight: none ;
+    font-style: italic;
+    font-size: 20vw;
+  }
+
+.venus:hover .venus-text {
+    visibility: visible;  
+    opacity: 1;
+}
 
   .earth {
     background-image: url("../../assets/images/planets/earth.png");
     transform: translate(-17%, 18%) scale(0.16);
   }
 
+  .earth-text {
+    position: relative;  
+    height: 50vh;
+    width: 50vw;
+    top: 20%;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    visibility: hidden;  
+    opacity: 0;  
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-weight: none ;
+    font-style: italic;
+    font-size: 20vw;
+  }
+
+.earth:hover .earth-text {
+    visibility: visible;  
+    opacity: 1;
+}
+
   .jupiter {
     background-image: url("../../assets/images/planets/jupiter.png");
     transform: translate(-28%, -8%) scale(0.2);
   }
+
+  .jupiter-text {
+    position: relative;  
+    height: 50vh;
+    width: 50vw;
+    top: 20%;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    visibility: hidden;  
+    opacity: 0;  
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-weight: none ;
+    font-style: italic;
+    font-size: 20vw;
+  }
+
+.jupiter:hover .jupiter-text {
+    visibility: visible;  
+    opacity: 1;
+}
 
   .mercury {
     background-image: url("../../assets/images/planets/mercury.png");
     transform: translate(-17%, -34%) scale(0.15);
   }
 
-  .sun:hover {
-    filter: brightness(120%);
+  .mercury-text {
+    position: relative;  
+    height: 50vh;
+    width: 50vw;
+    top: 20%;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    visibility: hidden;  
+    opacity: 0;  
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-weight: none ;
+    font-style: italic;
+    font-size: 20vw;
   }
+
+.mercury:hover .mercury-text {
+    visibility: visible;  
+    opacity: 1;
+}
