@@ -44,6 +44,23 @@
     bottom: 0%; 
   }
 
+  .sun-text {
+    position: relative;  
+    display: flex;
+    height: 543px;
+    width: 543px;
+    left: 175px;
+    top: 150px;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-weight: none ;
+    font-style: italic;
+    font-size: 5rem;
+    align-items: center;
+  }
+
   .mars {
     background-image: url("../../assets/images/planets/mars.png");
     transform: scale(0.155);
@@ -64,7 +81,7 @@
     transition: opacity 0.3s ease, visibility 0.3s ease;
     font-weight: none ;
     font-style: italic;
-    font-size: 20vw;
+    font-size: 15rem;
   }
 
 .mars:hover .mars-text {
