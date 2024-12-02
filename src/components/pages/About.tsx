@@ -36,7 +36,7 @@ const About: React.FC = () => {
             <Header />
             <div>
                 {contributors.map((contributor, index)=> (
-                    <div className="about-container">
+                    <div>
                         <div className="about-name-text">{contributor.name}</div>
                         <a href={contributor.email} className="about-button">Email</a>
                         <a href={contributor.github} className="about-button">GitHub</a>

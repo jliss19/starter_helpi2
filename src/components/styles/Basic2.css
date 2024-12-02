@@ -18,24 +18,24 @@
     background-position: center;
     height: 100%;
     width: 100%;
-    position: absolute; 
-    top: -5vh;
-    left: 4.5vw;
-    z-index: 1;
-    opacity: 1; 
-    pointer-events: none;
-    scale: 0.7;
+  position: absolute; 
+  top: -5vh;
+  left: 6.2vw;
+  z-index: 1;
+  opacity: 1; 
+  pointer-events: none;
+  scale: 0.8;
   }
 
   .basic-quiz {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: left;
-    font-family: Arial, sans-serif;
-    z-index: 2;
-    position: relative;
-    top: 23%;
+    max-width: 37vw;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  z-index: 2;
+  position: relative;
+  top: 20vh;
   }
 
   .basic-quiz {
