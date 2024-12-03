@@ -3,7 +3,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, boVerdana, Geneva, Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: url('./assets/images/rocketicon.cur'), auto;
+   cursor: url('./assets/images/hovercursor.cur'), auto
 
 }
 
@@ -13,5 +13,5 @@ code {
 }
 
 a:hover {
-  cursor: url('./assets/images/hover_cursor.cur'), pointer;
+  cursor: url('./assets/images/crosshaircur.cur'), pointer;
 }
