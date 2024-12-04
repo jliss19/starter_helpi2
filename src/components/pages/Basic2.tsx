@@ -58,7 +58,7 @@ export function Basic2(): React.JSX.Element {
             const openai = new OpenAI({ apiKey: JSON.parse(apiKey), dangerouslyAllowBrowser: true });
 
             try {
-                navigate('/loading');
+                navigate('/loading'); // Navigate to /loading while fetching recommendations
                 const quizResponses = responses.map((response, index) => ({
                     role: 'user' as const,
                     content: `Q${index + 1}: ${questions[index]} - Rating: ${response}`
@@ -69,15 +69,52 @@ export function Basic2(): React.JSX.Element {
                     messages: [
                         {
                             role: 'system',
-                            content: 'Your job is a career advisor. You will receive a completed career quiz in question answer pairs. There are two quiz types (basic, detailed). Detailed quizzes have a question 8 that you will read, and provide jobs related to the answer provided. Should the answer to question 8 be nonsense or unrelated, disregard it. Provide 5 jobs minimum, 10 maximum. Provide a detailed description of what to expect for each job. No more than 3 sentences each.\n\nDo not include any extra text or information. ONLY YOUR CAREER RECOMMENDATIONS.'
+                            content: `You are a career finder. Your task is to take either basic or detailed quiz answers provided by a user and determine a Central Career Field along with 8 specific jobs that align with the user's responses.
+
+### Your role:
+- Interpret the user's quiz answers (basic or detailed).
+- Identify a **Central Career Field** that best matches their preferences, skills, and interests.
+- Provide **8 Specific Jobs** within that field.
+
+### Response Format:
+You must format the response using the delimiter \`###\` to allow automated parsing. Follow this structure precisely:
+
+### Central Career Field
+[Field Name]
+
+### Job 1
+Title: [Job Title]
+Education Needed: [Education Requirements]
+Experience Needed: [Experience Requirements]
+Salary: [Salary Range]
+Expectations: [Job Expectations]
+Work Environment: [Work Environment]
+Stability: [Stability]
+Future Options: [Future Options]
+
+### Job 2
+...
+(Repeat for all 8 jobs)
+
+### Additional Requirements:
+1. **Quiz Input**: 
+   - If provided with **basic quiz answers**, focus on broader preferences and general suitability.
+   - If provided with **detailed quiz answers**, incorporate specific goals, past experiences, and preferences for work environments.
+
+2. **Career Suggestions**:
+   - Ensure that the Central Career Field is cohesive and ties all jobs together.
+   - Select jobs that vary in education, experience, and future options to provide a range of possibilities.
+
+3. **Clarity and Conciseness**:
+   - Ensure each job description is concise but includes all required information.
+   - Use a structured and parseable format to make it easy for automated systems to process.
+
+Make sure to strictly adhere to the formatting instructions and provide logical, well-researched career suggestions.`
                         },
                         ...quizResponses,
                     ],
                     temperature: 1,
                     max_tokens: 2048,
-                    top_p: 1,
-                    frequency_penalty: 0,
-                    presence_penalty: 0,
                 });
 
                 const careerRecommendations = response.choices[0]?.message?.content || 'No recommendations found';
