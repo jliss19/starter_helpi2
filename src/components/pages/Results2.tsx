@@ -13,25 +13,61 @@ import saturn from "../../assets/images/planets/saturn.png";
 import uranus from "../../assets/images/planets/uranus.png";
 import venus from "../../assets/images/planets/venus.png";
 
-const MarsText: React.FC = () => {
-  return (
-    <div className="mars-text">
-      <h1>Results</h1>
-      <p></p>
-    </div>
-  );
+type Job = {
+  title: string;
+  salary: string;
+  educationNeeded: string;
 };
+
+// Function to parse career recommendations
+function parseCareerRecommendations(careerRecommendations: string): {
+  centralField: string;
+  jobs: Job[];
+} {
+  // Split the input into sections by '###'
+  const sections = careerRecommendations.split("###").map((s) => s.trim());
+
+  // Extract the Central Career Field and remove the heading
+  const centralField =
+    sections.shift()?.replace("Central Career Field", "").trim() || "Unknown";
+
+  // Map over the remaining sections to extract job information
+  const jobs: Job[] = sections.map((jobSection) => {
+    const categories = jobSection.split("!!!").map((c) => c.trim());
+    return {
+      title:
+        categories
+          .find((c) => c.startsWith("Title:"))
+          ?.replace("Title:", "")
+          .trim() || "Unknown",
+      salary:
+        categories
+          .find((c) => c.startsWith("Salary:"))
+          ?.replace("Salary:", "")
+          .trim() || "Unknown",
+      educationNeeded:
+        categories
+          .find((c) => c.startsWith("Education Needed:"))
+          ?.replace("Education Needed:", "")
+          .trim() || "Unknown",
+    };
+  });
+
+  return { centralField, jobs };
+}
 
 const Results2: React.FC = () => {
   const location = useLocation();
   const careerRecommendations =
     location.state?.careerRecommendations || "No recommendations available.";
+  const { jobs } = parseCareerRecommendations(careerRecommendations);
 
   return (
     <div className="results2-background">
       <Header />
       <div className="sun">
         <img src={sun} alt="Sun" />
+        <div></div>
       </div>
       <div className="planet mars">
         <img src={mars} alt="Mars" />

@@ -43,7 +43,7 @@
 .planet-text {
   position: absolute;
   color: white;
-  font-size: 1.2em;
+  font-size: 1rem;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
   font-family: Arial, sans-serif;
   top: 50%;
@@ -55,8 +55,8 @@
   padding: 10px;
   border-radius: 5px;
   word-wrap: break-word;
-  max-width: 150%;
-  max-height: 200%;
+  width: 250%;
+  height: 50%;
 }
 
 .mars {
