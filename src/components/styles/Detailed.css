@@ -181,3 +181,8 @@
   justify-content: center;
   display: flex;
 }
+
+/* Custom cursor for quiz buttons */
+.quiz-button:hover {
+  cursor: url('../../assets/images/crosshaircur.cur') 16 16, pointer;
+}

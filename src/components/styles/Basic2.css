@@ -98,3 +98,15 @@
     text-align: center;
     padding: 10px;
   }
+
+  /* Custom cursor for quiz buttons */
+.quiz-button:hover {
+  cursor: url('../../assets/images/crosshaircur.cur') 16 16, pointer;
+}
+
+/* Additional styles for consistent button appearance (if needed) */
+.quiz-button {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}

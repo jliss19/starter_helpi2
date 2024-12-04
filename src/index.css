@@ -3,7 +3,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, boVerdana, Geneva, Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: url('./assets/images/hovercursor.cur'), auto;
+  cursor: url('./assets/images/hovercursor.cur') 16 16, auto;
 }
 
 code {
@@ -11,15 +11,25 @@ code {
 }
 
 a:hover {
-  cursor: url('./assets/images/crosshaircur.cur'), pointer;
+  cursor: url('./assets/images/crosshaircur.cur') 16 16, pointer;
 }
 
 /* Custom cursor for hovering over text boxes */
 input[type="text"]:hover, textarea:hover {
-  cursor: url('./assets/images/crosshaircur.cur'), text;
+  cursor: url('./assets/images/crosshaircur.cur') 16 16, text;
 }
 
-/* Optional: Add focus behavior for text boxes */
+/* Add focus behavior for text boxes */
 input[type="text"]:focus, textarea:focus {
-  cursor: url('./assets/images/crosshaircur.cur'), text;
+  cursor: url('./assets/images/crosshaircur.cur') 16 16, text;
+}
+
+/* Custom cursor for quiz radio buttons */
+input[type="radio"]:hover {
+  cursor: url('./assets/images/crosshaircur.cur') 16 16, pointer;
+}
+
+/* Optional: Add focus behavior for radio buttons */
+input[type="radio"]:focus {
+  cursor: url('./assets/images/crosshaircur.cur') 16 16, pointer;
 }

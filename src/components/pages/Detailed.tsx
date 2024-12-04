@@ -125,6 +125,7 @@ export function Detailed(): React.JSX.Element {
                 <div className="navigation-buttons">
                     {currentQuestion > 0 && (
                         <Button
+                            className="quiz-button"
                             variant="contained"
                             sx={{ backgroundColor: '#EFEFEF', color: '#333', marginRight: 2 }}
                             onClick={handlePrev}
@@ -134,6 +135,7 @@ export function Detailed(): React.JSX.Element {
                     )}
                     {currentQuestion < questions.length - 1 ? (
                         <Button
+                            className="quiz-button"
                             variant="contained"
                             sx={{ backgroundColor: '#EF233C' }}
                             onClick={handleNext}
@@ -142,6 +144,7 @@ export function Detailed(): React.JSX.Element {
                         </Button>
                     ) : (
                         <Button
+                            className="quiz-button"
                             variant="contained"
                             sx={{ backgroundColor: '#EF233C' }}
                             onClick={handleSubmit}
