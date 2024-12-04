@@ -53,19 +53,61 @@ export function Detailed(): React.JSX.Element {
                     role: 'user' as const,
                     content: `Q${index + 1}: ${q.question} - Answer: ${q.answer}`
                 }));
-
+            
                 const response = await openai.chat.completions.create({
                     model: 'gpt-4-turbo',
                     messages: [
                         {
                             role: 'system',
-                            content: 'Your job is a career advisor. You will receive a completed career quiz in question-answer pairs. Provide a detailed career recommendation based on the user\'s answers.'
+                            content: `You are a career finder. Your task is to take either basic or detailed quiz answers provided by a user and determine a Central Career Field along with 8 specific jobs that align with the user's responses.
+            
+            ### Your role:
+            - Interpret the user's quiz answers (basic or detailed).
+            - Identify a **Central Career Field** that best matches their preferences, skills, and interests.
+            - Provide **8 Specific Jobs** within that field.
+            
+            ### Response Format:
+            You must format the response using the delimiter \`###\` to allow automated parsing. Follow this structure precisely:
+            
+            ### Central Career Field
+            [Field Name]
+            
+            ### Job 1
+            Title: [Job Title]
+            Education Needed: [Education Requirements]
+            Experience Needed: [Experience Requirements]
+            Salary: [Salary Range]
+            Expectations: [Job Expectations]
+            Work Environment: [Work Environment]
+            Stability: [Stability]
+            Future Options: [Future Options]
+            
+            ### Job 2
+            ...
+            (Repeat for all 8 jobs)
+            
+            ### Additional Requirements:
+            1. **Quiz Input**: 
+               - If provided with **basic quiz answers**, focus on broader preferences and general suitability.
+               - If provided with **detailed quiz answers**, incorporate specific goals, past experiences, and preferences for work environments.
+            
+            2. **Career Suggestions**:
+               - Ensure that the Central Career Field is cohesive and ties all jobs together.
+               - Select jobs that vary in education, experience, and future options to provide a range of possibilities.
+            
+            3. **Clarity and Conciseness**:
+               - Ensure each job description is concise but includes all required information.
+               - Use a structured and parseable format to make it easy for automated systems to process.
+            
+            Make sure to strictly adhere to the formatting instructions and provide logical, well-researched career suggestions.`
                         },
                         ...quizResponses,
                     ],
                     temperature: 1,
                     max_tokens: 2048,
                 });
+            
+            
 
                 const careerRecommendations = response.choices[0]?.message?.content || 'No recommendations found';
                 navigate('/results', { state: { careerRecommendations } });
@@ -125,7 +167,6 @@ export function Detailed(): React.JSX.Element {
                 <div className="navigation-buttons">
                     {currentQuestion > 0 && (
                         <Button
-                            className="quiz-button"
                             variant="contained"
                             sx={{ backgroundColor: '#EFEFEF', color: '#333', marginRight: 2 }}
                             onClick={handlePrev}
@@ -135,7 +176,6 @@ export function Detailed(): React.JSX.Element {
                     )}
                     {currentQuestion < questions.length - 1 ? (
                         <Button
-                            className="quiz-button"
                             variant="contained"
                             sx={{ backgroundColor: '#EF233C' }}
                             onClick={handleNext}
@@ -144,7 +184,6 @@ export function Detailed(): React.JSX.Element {
                         </Button>
                     ) : (
                         <Button
-                            className="quiz-button"
                             variant="contained"
                             sx={{ backgroundColor: '#EF233C' }}
                             onClick={handleSubmit}
