@@ -58,8 +58,7 @@ export function Basic2(): React.JSX.Element {
             const openai = new OpenAI({ apiKey: JSON.parse(apiKey), dangerouslyAllowBrowser: true });
 
             try {
-                navigate('/loading'); // Navigate to /loading while fetching recommendations
-                // Use explicit typing for quiz responses
+                navigate('/loading');
                 const quizResponses = responses.map((response, index) => ({
                     role: 'user' as const,
                     content: `Q${index + 1}: ${questions[index]} - Rating: ${response}`
@@ -103,60 +102,69 @@ export function Basic2(): React.JSX.Element {
     ];
 
     return (
-        <div className = 'basic-image'>
-            <div className = 'asteroid-image1' />
-
+        <div className="basic-image">
+            <div className="asteroid-image1" />
             <Header />
-            
-
-        <div className="basic-quiz">
-            <h2 className="title2">Rate Your Preferences</h2>
-            <div className="question">
-                <h3 className="question-text">{questions[currentQuestion]}</h3>
-                <div className="emoji-options">
-                    {emojiOptions.map((option) => (
-                        <div key={option.value} className="emoji-option">
-                            <Form.Check
-                                type="radio"
-                                name={`question-${currentQuestion}`}
-                                value={option.value}
-                                checked={responses[currentQuestion] === option.value}
-                                onChange={() => updateResponse(option.value)}
-                            />
-                            <span className="emoji">{option.label}</span>
-                            <span className="emoji-text">{option.text}</span>
-                        </div>
-                    ))}
+            <div className="basic-quiz">
+                <h2 className="title2">Rate Your Preferences</h2>
+                <div className="question">
+                    <h3 className="question-text">{questions[currentQuestion]}</h3>
+                    <div className="emoji-options">
+                        {emojiOptions.map((option) => (
+                            <div key={option.value} className="emoji-option">
+                                <Form.Check
+                                    type="radio"
+                                    name={`question-${currentQuestion}`}
+                                    value={option.value}
+                                    checked={responses[currentQuestion] === option.value}
+                                    onChange={() => updateResponse(option.value)}
+                                />
+                                <span className="emoji">{option.label}</span>
+                                <span className="emoji-text">{option.text}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="navigation-buttons">
+                    {currentQuestion > 0 && (
+                        <Button
+                            className="quiz-button"
+                            variant="contained"
+                            sx={{ backgroundColor: '#EFEFEF', color: '#333', marginRight: 2 }}
+                            onClick={handlePrev}
+                        >
+                            Prev
+                        </Button>
+                    )}
+                    {currentQuestion < questions.length - 1 ? (
+                        <Button
+                            className="quiz-button"
+                            variant="contained"
+                            sx={{ backgroundColor: '#EF233C' }}
+                            onClick={handleNext}
+                        >
+                            Next
+                        </Button>
+                    ) : (
+                        <Button
+                            className="quiz-button"
+                            variant="contained"
+                            sx={{ backgroundColor: '#EF233C' }}
+                            onClick={handleSubmit}
+                        >
+                            Submit
+                        </Button>
+                    )}
+                </div>
+                <div className="progress-container">
+                    <span>{currentQuestion + 1}/{questions.length}</span>
+                    <ProgressBar now={((currentQuestion + 1) / questions.length) * 100} />
+                </div>
+                <div className="submit-message">
+                    {submitMessage && <p>{submitMessage}</p>}
                 </div>
             </div>
-            
-            <div className="navigation-buttons">
-                {currentQuestion > 0 && (
-                    <Button variant="contained" sx={{ backgroundColor: '#EFEFEF', color: '#333', marginRight: 2 }} onClick={handlePrev}>
-                        Prev
-                    </Button>
-                )}
-                {currentQuestion < questions.length - 1 ? (
-                    <Button variant="contained" sx={{ backgroundColor: '#EF233C' }} onClick={handleNext}>
-                        Next
-                    </Button>
-                ) : (
-                    <Button variant="contained" sx={{ backgroundColor: '#EF233C' }} onClick={handleSubmit}>
-                        Submit
-                    </Button>
-                )}
-            </div>
-
-            <div className="progress-container">
-                <span>{currentQuestion + 1}/{questions.length}</span>
-                <ProgressBar now={((currentQuestion + 1) / questions.length) * 100} />
-            </div>
-
-            <div className="submit-message">
-                {submitMessage && <p>{submitMessage}</p>}
-            </div>
-        </div>
-        <Footer />
+            <Footer />
         </div>
     );
 }
