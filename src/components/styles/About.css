@@ -1,5 +1,5 @@
 .basic-image {
-    background-image: url("../../assets/images/space.png");
+  background-image: url("../../assets/images/space.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -7,23 +7,33 @@
   width: 100%;
   overflow: hidden;
   position: relative;
-  transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
+  transition:
+    background-image 1s ease-in-out,
+    opacity 1s ease-in-out;
+}
 
-  }
+.about-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: 30%;
+}
 
-  .about-name-text {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
+.about-name-text {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
 
-  .about-button {
-    text-align: center;
-    background-color: #EF233C;
-    color: white;
-    padding: 10px 24px;
-    border-radius: 8px;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
+.about-button {
+  text-align: center;
+  background-color: #ef233c;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 8px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
