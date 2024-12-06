@@ -84,22 +84,17 @@ export function Basic2(): React.JSX.Element {
 - Provide **8 Specific Jobs** within that field.
 
 ### Response Format:
-You must format the response using the delimiter \`###\` to allow automated parsing. Follow this structure precisely:
+You must format the response using the delimiter \`###\` to allow automated parsing, and within each job, use the delimiter \`!!!\` between categories. Follow this structure precisely:
 
-### Central Career Field
+Central Career Field
 [Field Name]
 
-### Job 1
-Title: [Job Title]
+###
+Title: [Job Title] !!!
+Salary: [Salary Range] !!!
 Education Needed: [Education Requirements]
-Experience Needed: [Experience Requirements]
-Salary: [Salary Range]
-Expectations: [Job Expectations]
-Work Environment: [Work Environment]
-Stability: [Stability]
-Future Options: [Future Options]
 
-### Job 2
+###
 ...
 (Repeat for all 8 jobs)
 
@@ -116,7 +111,8 @@ Future Options: [Future Options]
    - Ensure each job description is concise but includes all required information.
    - Use a structured and parseable format to make it easy for automated systems to process.
 
-Make sure to strictly adhere to the formatting instructions and provide logical, well-researched career suggestions.`,
+Make sure to strictly adhere to the formatting instructions and provide logical, well-researched career suggestions.
+`,
             },
             ...quizResponses,
           ],
