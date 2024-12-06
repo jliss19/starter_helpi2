@@ -2,7 +2,6 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import "../styles/Results2.css";
 import Header from "../Header";
-import Footer from "../Footer";
 import sun from "../../assets/images/planets/sun.png";
 import mars from "../../assets/images/planets/mars.png";
 import mercury from "../../assets/images/planets/mercury.png";
@@ -13,58 +12,121 @@ import saturn from "../../assets/images/planets/saturn.png";
 import uranus from "../../assets/images/planets/uranus.png";
 import venus from "../../assets/images/planets/venus.png";
 
-const MarsText: React.FC = () => {
-  return (
-    <div className="mars-text">
-      <h1>Results</h1>
-      <p></p>
-    </div>
-  );
+// Define the Job type
+type Job = {
+  title: string;
+  salary: string;
+  educationNeeded: string;
+};
+
+// Define the PlanetData type for cleaner mapping
+type PlanetData = {
+  name: string;
+  img: string;
+  job: Job;
+  className: string;
+};
+
+function parseCareerRecommendations(careerRecommendations: string): {
+  centralField: string;
+  jobs: Job[];
+} {
+  const sections = careerRecommendations.split("###").map((s) => s.trim());
+
+  const centralField =
+    sections
+      .shift()
+      ?.replace(/^\s*central career field\s*[:\-\—]?\s*/i, "")
+      .trim() || "Unknown";
+
+  console.log("Central Career Field:", centralField);
+
+  const jobs: Job[] = sections
+    .filter((section) => section)
+    .map((jobSection, index) => {
+      const categories = jobSection.split("!!!").map((c) => c.trim());
+      console.log(`Parsing Job ${index + 1}:`, categories);
+
+      return {
+        title:
+          categories
+            .find((c) => c.toLowerCase().includes("title:"))
+            ?.replace(/title:/i, "")
+            .trim() || "Unknown",
+        salary:
+          categories
+            .find((c) => c.toLowerCase().includes("salary:"))
+            ?.replace(/salary:/i, "")
+            .trim() || "Unknown",
+        educationNeeded:
+          categories
+            .find((c) => c.toLowerCase().includes("education needed:"))
+            ?.replace(/education needed:/i, "")
+            .trim() || "Unknown",
+      };
+    });
+
+  // console.log("Parsed Jobs:", jobs); // Debug parsed jobs
+  // console.log("Central Field:", centralField); // Debug parsed jobs
+  console.log("Raw:", careerRecommendations);
+  return { centralField, jobs };
+}
+
+const planetImages = {
+  mars,
+  mercury,
+  earth,
+  jupiter,
+  neptune,
+  saturn,
+  uranus,
+  venus,
 };
 
 const Results2: React.FC = () => {
   const location = useLocation();
   const careerRecommendations =
-    location.state?.careerRecommendations || "No recommendations available.";
+    location.state?.careerRecommendations || "Central Career Field###";
+
+  const { centralField, jobs } = parseCareerRecommendations(
+    careerRecommendations
+  );
+
+  // console.log("Central Field:", centralField);
+  // console.log("Jobs:", jobs);
+
+  const planets: PlanetData[] = Object.keys(planetImages).map((key, index) => ({
+    name: key,
+    img: planetImages[key as keyof typeof planetImages],
+    job: jobs[index] || {
+      title: "Unknown",
+      salary: "Unknown",
+      educationNeeded: "Unknown",
+    },
+    className: key.toLowerCase(),
+  }));
 
   return (
     <div className="results2-background">
       <Header />
       <div className="sun">
         <img src={sun} alt="Sun" />
+        <div className="sun-text">
+          <strong>Central Field:</strong> {centralField}
+        </div>
       </div>
-      <div className="planet mars">
-        <img src={mars} alt="Mars" />
-        <div className="planet-text">Mars</div>
-      </div>
-      <div className="planet uranus">
-        <img src={uranus} alt="Uranus" />
-        <div className="planet-text">Uranus</div>
-      </div>
-      <div className="planet saturn">
-        <img src={saturn} alt="Saturn" />
-        <div className="planet-text">Saturn</div>
-      </div>
-      <div className="planet neptune">
-        <img src={neptune} alt="Neptune" />
-        <div className="planet-text">Neptune</div>
-      </div>
-      <div className="planet venus">
-        <img src={venus} alt="Venus" />
-        <div className="planet-text">Venus</div>
-      </div>
-      <div className="planet earth">
-        <img src={earth} alt="Earth" />
-        <div className="planet-text">Earth</div>
-      </div>
-      <div className="planet jupiter">
-        <img src={jupiter} alt="Jupiter" />
-        <div className="planet-text">Jupiter</div>
-      </div>
-      <div className="planet mercury">
-        <img src={mercury} alt="Mercury" />
-        <div className="planet-text">Mercury</div>
-      </div>
+      {planets.map((planet) => (
+        <div key={planet.name} className={`planet ${planet.className}`}>
+          <img src={planet.img} alt={planet.name} />
+          <div className="planet-text">
+            <strong>Title:</strong> {planet.job.title}
+            <br />
+            <strong>Salary:</strong> {planet.job.salary}
+            <br />
+            <strong>Education Needed:</strong> {planet.job.educationNeeded}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
