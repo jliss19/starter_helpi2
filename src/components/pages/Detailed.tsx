@@ -211,7 +211,7 @@ Make sure to strictly adhere to the formatting instructions and provide logical,
       <Header />
       <div className="asteroid-image2" />
       <div className="detailed-quiz">
-        <h2 className="title2">Detailed Questions</h2>
+        <h2 className="title2">Short Answer/Multiple Choice</h2>
         <div className="question">
           <h3 className="question-text">{currentQ.question}</h3>
           {currentQ.type === "multiple-choice" ? (

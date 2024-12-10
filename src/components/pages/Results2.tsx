@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../styles/Results2.css";
 import Header from "../Header";
@@ -12,19 +12,28 @@ import saturn from "../../assets/images/planets/saturn.png";
 import uranus from "../../assets/images/planets/uranus.png";
 import venus from "../../assets/images/planets/venus.png";
 
-// Define the Job type
 type Job = {
   title: string;
   salary: string;
   educationNeeded: string;
 };
 
-// Define the PlanetData type for cleaner mapping
 type PlanetData = {
   name: string;
   img: string;
   job: Job;
   className: string;
+};
+
+const planetImages = {
+  mars,
+  mercury,
+  earth,
+  jupiter,
+  neptune,
+  saturn,
+  uranus,
+  venus,
 };
 
 function parseCareerRecommendations(careerRecommendations: string): {
@@ -39,61 +48,50 @@ function parseCareerRecommendations(careerRecommendations: string): {
       ?.replace(/^\s*central career field\s*[:\-\—]?\s*/i, "")
       .trim() || "Unknown";
 
-  console.log("Central Career Field:", centralField);
+  const jobs: Job[] = sections.map((jobSection, index) => {
+    const categories = jobSection.split("!!!").map((c) => c.trim());
+    return {
+      title:
+        categories
+          .find((c) => c.toLowerCase().includes("title:"))
+          ?.replace(/title:/i, "")
+          .trim() || "Unknown",
+      salary:
+        categories
+          .find((c) => c.toLowerCase().includes("salary:"))
+          ?.replace(/salary:/i, "")
+          .trim() || "Unknown",
+      educationNeeded:
+        categories
+          .find((c) => c.toLowerCase().includes("education needed:"))
+          ?.replace(/education needed:/i, "")
+          .trim() || "Unknown",
+    };
+  });
 
-  const jobs: Job[] = sections
-    .filter((section) => section)
-    .map((jobSection, index) => {
-      const categories = jobSection.split("!!!").map((c) => c.trim());
-      console.log(`Parsing Job ${index + 1}:`, categories);
-
-      return {
-        title:
-          categories
-            .find((c) => c.toLowerCase().includes("title:"))
-            ?.replace(/title:/i, "")
-            .trim() || "Unknown",
-        salary:
-          categories
-            .find((c) => c.toLowerCase().includes("salary:"))
-            ?.replace(/salary:/i, "")
-            .trim() || "Unknown",
-        educationNeeded:
-          categories
-            .find((c) => c.toLowerCase().includes("education needed:"))
-            ?.replace(/education needed:/i, "")
-            .trim() || "Unknown",
-      };
-    });
-
-  // console.log("Parsed Jobs:", jobs); // Debug parsed jobs
-  // console.log("Central Field:", centralField); // Debug parsed jobs
-  console.log("Raw:", careerRecommendations);
   return { centralField, jobs };
 }
 
-const planetImages = {
-  mars,
-  mercury,
-  earth,
-  jupiter,
-  neptune,
-  saturn,
-  uranus,
-  venus,
-};
-
 const Results2: React.FC = () => {
   const location = useLocation();
-  const careerRecommendations =
-    location.state?.careerRecommendations || "Central Career Field###";
+  const [careerRecommendations, setCareerRecommendations] = useState<string>(
+    () =>
+      localStorage.getItem("careerRecommendations") || "Central Career Field###"
+  );
+
+  useEffect(() => {
+    if (location.state?.careerRecommendations) {
+      setCareerRecommendations(location.state.careerRecommendations);
+      localStorage.setItem(
+        "careerRecommendations",
+        location.state.careerRecommendations
+      );
+    }
+  }, [location.state?.careerRecommendations]);
 
   const { centralField, jobs } = parseCareerRecommendations(
     careerRecommendations
   );
-
-  // console.log("Central Field:", centralField);
-  // console.log("Jobs:", jobs);
 
   const planets: PlanetData[] = Object.keys(planetImages).map((key, index) => ({
     name: key,

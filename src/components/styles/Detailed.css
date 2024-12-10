@@ -12,23 +12,22 @@
   overflow: hidden;
   position: relative;
   z-index: 0;
-
 }
 
 .asteroid-image2 {
   background-image: url("../../assets/images/asteroid.png");
-  background-size: contain; 
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
   width: 100%;
-  position: absolute; 
+  position: absolute;
   top: -5vh;
   left: 6.2vw;
   z-index: 1;
-  opacity: 1; 
+  opacity: 1;
   pointer-events: none;
-  scale: 0.8;
+  scale: 0.9;
 }
 
 .detailed-quiz {
@@ -54,7 +53,8 @@
   margin: 0 auto;
 }
 
-.left, .right {
+.left,
+.right {
   padding: 20px;
   box-sizing: border-box;
 }
@@ -73,94 +73,94 @@
 
 /* Radio button group container */
 .radio-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Align radio buttons under the question */
-    margin-left: 50px; /* Adjust this margin for further alignment */
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align radio buttons under the question */
+  margin-left: 50px; /* Adjust this margin for further alignment */
+}
 
-  .radio-text {
-    font-size: 16px;
-    margin-left: 10px;
-  }
-  
-  /* Container for radio buttons */
-  .radio-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    position: relative;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  /* Hide the default radio button */
-  .radio-container input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  /* Custom radio button */
-  .radio-custom {
-    position: relative;
-    height: 20px;
-    width: 20px;
-    background-color: #ccc;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  
-  /* Style for when the radio button is checked */
-  .radio-container input[type="radio"]:checked + .radio-custom {
-    background-color: #2196F3; /* Custom color for selected radio button */
-  }
-  
-  /* Add the inner circle when the radio button is checked */
-  .radio-custom::after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  
-  .radio-container input[type="radio"]:checked + .radio-custom::after {
-    display: block;
-  }
-  
-  .radio-container .radio-custom::after {
-    top: 50%;
-    left: 50%;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: white;
-    transform: translate(-50%, -50%);
-  }
-  
-  .questionText {
-    font-size: 110%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    padding: 10px;
-    text-align: left;
-  }
+.radio-text {
+  font-size: 16px;
+  margin-left: 10px;
+}
 
-  .input-box {
-    width: 100%;
-    max-width: 100%; 
-    padding: 10px 15px;
-    font-size: 12px;
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    outline: none;
-    transition: border-color 0.3s ease; 
+/* Container for radio buttons */
+.radio-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Hide the default radio button */
+.radio-container input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Custom radio button */
+.radio-custom {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* Style for when the radio button is checked */
+.radio-container input[type="radio"]:checked + .radio-custom {
+  background-color: #2196f3; /* Custom color for selected radio button */
+}
+
+/* Add the inner circle when the radio button is checked */
+.radio-custom::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radio-container input[type="radio"]:checked + .radio-custom::after {
+  display: block;
+}
+
+.radio-container .radio-custom::after {
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  transform: translate(-50%, -50%);
+}
+
+.questionText {
+  font-size: 110%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+}
+
+.input-box {
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 15px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
 .input-box:focus {
-    border-color: #007BFF; 
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); 
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
 .responses {
@@ -184,5 +184,7 @@
 
 /* Custom cursor for quiz buttons */
 .quiz-button:hover {
-  cursor: url('../../assets/images/crosshaircur.cur') 16 16, pointer;
+  cursor:
+    url("../../assets/images/crosshaircur.cur") 16 16,
+    pointer;
 }

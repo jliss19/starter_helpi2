@@ -1,34 +1,33 @@
-  .basic-image {
-    background-image: url("../../assets/images/space.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    z-index: 0;
+.basic-image {
+  background-image: url("../../assets/images/space.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
 
-  }
-  
-  .asteroid-image1 {
-    background-image: url("../../assets/images/asteroid.png");
-    background-size: contain; 
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100%;
-    width: 100%;
-  position: absolute; 
+.asteroid-image1 {
+  background-image: url("../../assets/images/asteroid.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
   top: -5vh;
   left: 6.2vw;
   z-index: 1;
-  opacity: 1; 
+  opacity: 1;
   pointer-events: none;
-  scale: 0.8;
-  }
+  scale: 0.9;
+}
 
-  .basic-quiz {
-    max-width: 37vw;
+.basic-quiz {
+  max-width: 37vw;
   margin: 0 auto;
   padding: 20px;
   text-align: left;
@@ -36,72 +35,76 @@
   z-index: 2;
   position: relative;
   top: 20vh;
-  }
-
-  .basic-quiz {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-  .title2 {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .question {
-    margin-bottom: 30px;
-  }
-  
-  .question-text {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    text-align: center;
-  }
-  
-  .emoji-options {
-    display: flex;
-    justify-content: space-around;
-    gap: 10px;
-  }
-  
-  .emoji-option {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .emoji {
-    font-size: 2rem;
-    margin-bottom: 5px;
-  }
-  
-  .emoji-text {
-    font-size: 0.9rem;
-  }
-  
-  .radio-container input[type="radio"] {
-    margin-bottom: 5px;
-    cursor: pointer;
-    appearance: none;
-  }
-  
-  .radio-container input[type="radio"]:checked + .emoji {
-    border: 2px solid #007bff;
-    border-radius: 50%;
-  }
-  
-  .submit-button {
-    position: relative;
-    align-items: center;
-    text-align: center;
-    padding: 10px;
-  }
+.basic-quiz {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
 
-  /* Custom cursor for quiz buttons */
+.title2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.question {
+  margin-bottom: 30px;
+}
+
+.question-text {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.emoji-options {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.emoji-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.emoji {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.emoji-text {
+  font-size: 1rem;
+}
+
+.radio-container input[type="radio"] {
+  margin-bottom: 5px;
+  cursor: pointer;
+  appearance: none;
+}
+
+.radio-container input[type="radio"]:checked + .emoji {
+  border: 2px solid #007bff;
+  border-radius: 50%;
+}
+
+.submit-button {
+  position: relative;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Custom cursor for quiz buttons */
 .quiz-button:hover {
-  cursor: url('../../assets/images/crosshaircur.cur') 16 16, pointer;
+  cursor:
+    url("../../assets/images/crosshaircur.cur") 16 16,
+    pointer;
 }
 
 /* Additional styles for consistent button appearance (if needed) */
