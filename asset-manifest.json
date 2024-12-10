@@ -1,19 +1,33 @@
 {
   "files": {
-    "main.css": "/starter_helpi2/static/css/main.32cd8ce6.css",
-    "main.js": "/starter_helpi2/static/js/main.621ff152.js",
+    "main.css": "/starter_helpi2/static/css/main.2132e395.css",
+    "main.js": "/starter_helpi2/static/js/main.240e9f91.js",
     "static/js/453.bad6c33a.chunk.js": "/starter_helpi2/static/js/453.bad6c33a.chunk.js",
     "static/media/rocket-3972.gif": "/starter_helpi2/static/media/rocket-3972.174cccea266c420b89ce.gif",
+    "static/media/asteroid.png": "/starter_helpi2/static/media/asteroid.6004615260d1001e31c5.png",
+    "static/media/bluespace(denoise).png": "/starter_helpi2/static/media/bluespace(denoise).c443a38697cd20504721.png",
+    "static/media/space.png": "/starter_helpi2/static/media/space.324ae4192525cd93ab15.png",
     "static/media/earthimage.jpg": "/starter_helpi2/static/media/earthimage.3cccc574c54b42b9c0e9.jpg",
     "static/media/rocket.png": "/starter_helpi2/static/media/rocket.01da9bb06773c6b25350.png",
     "static/media/starcrop.png": "/starter_helpi2/static/media/starcrop.42ec5ff90a9e265493f9.png",
+    "static/media/sun.png": "/starter_helpi2/static/media/sun.393faadf60df6d7cc148.png",
+    "static/media/jupiter.png": "/starter_helpi2/static/media/jupiter.03d8b5179c6f58df4963.png",
+    "static/media/earth.png": "/starter_helpi2/static/media/earth.b99e0b393e9ed0ce6830.png",
+    "static/media/saturn.png": "/starter_helpi2/static/media/saturn.4d648bfff8a234c83bd5.png",
+    "static/media/neptune.png": "/starter_helpi2/static/media/neptune.0e54dbc7f22b69c75659.png",
+    "static/media/uranus.png": "/starter_helpi2/static/media/uranus.24e8d13d3b3e9fa77555.png",
+    "static/media/mercury.png": "/starter_helpi2/static/media/mercury.d4aff1fee5e398de428d.png",
+    "static/media/mars.png": "/starter_helpi2/static/media/mars.aa176b0566cc4cdf2753.png",
+    "static/media/venus.png": "/starter_helpi2/static/media/venus.9afdff3ccde9e07a18ee.png",
+    "static/media/hovercursor.cur": "/starter_helpi2/static/media/hovercursor.039af614270ba9e7b419.cur",
     "index.html": "/starter_helpi2/index.html",
-    "main.32cd8ce6.css.map": "/starter_helpi2/static/css/main.32cd8ce6.css.map",
-    "main.621ff152.js.map": "/starter_helpi2/static/js/main.621ff152.js.map",
+    "static/media/crosshaircur.cur": "/starter_helpi2/static/media/crosshaircur.c625cac83c9783946773.cur",
+    "main.2132e395.css.map": "/starter_helpi2/static/css/main.2132e395.css.map",
+    "main.240e9f91.js.map": "/starter_helpi2/static/js/main.240e9f91.js.map",
     "453.bad6c33a.chunk.js.map": "/starter_helpi2/static/js/453.bad6c33a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.32cd8ce6.css",
-    "static/js/main.621ff152.js"
+    "static/css/main.2132e395.css",
+    "static/js/main.240e9f91.js"
   ]
 }
