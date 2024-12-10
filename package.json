@@ -26,7 +26,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "homepage": "https://jliss19.github.io/starter_helpi2",
+    "homepage": "https://jliss19.github.io/starter_helpi2/",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
