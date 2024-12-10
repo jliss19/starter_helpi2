@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home3 from "./components/pages/Home3";
 import Detailed from "./components/pages/Detailed";
 import Basic2 from "./components/pages/Basic2";
@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="home-image">
       <div className="App">
-        <Router>
+        <BrowserRouter>
           <div>
             <main>
               <Routes>
@@ -25,7 +25,7 @@ function App() {
               </Routes>
             </main>
           </div>
-        </Router>
+        </BrowserRouter>
       </div>
     </div>
   );
