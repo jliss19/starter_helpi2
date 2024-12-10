@@ -1,8 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Header from "../Header";
 import "../styles/About.css";
-import { link } from "fs";
 
 const About: React.FC = () => {
   const contributors = [

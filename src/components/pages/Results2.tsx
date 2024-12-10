@@ -45,7 +45,7 @@ function parseCareerRecommendations(careerRecommendations: string): {
   const centralField =
     sections
       .shift()
-      ?.replace(/^\s*central career field\s*[:\-\—]?\s*/i, "")
+      ?.replace(/^Central Career Field:\s*/i, "")
       .trim() || "Unknown";
 
   const jobs: Job[] = sections.map((jobSection, index) => {
@@ -110,7 +110,11 @@ const Results2: React.FC = () => {
       <div className="sun">
         <img src={sun} alt="Sun" />
         <div className="sun-text">
-          <strong>Central Field:</strong> {centralField}
+          <strong>
+            Central Field:
+            <br />
+          </strong>{" "}
+          {centralField}
         </div>
       </div>
       {planets.map((planet) => (

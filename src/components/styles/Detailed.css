@@ -38,7 +38,7 @@
   font-family: Arial, sans-serif;
   z-index: 2;
   position: relative;
-  top: 20vh;
+  top: 25vh;
 }
 
 .detailed-quiz {
@@ -71,12 +71,11 @@
   text-align: left;
 }
 
-/* Radio button group container */
 .radio-group {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align radio buttons under the question */
-  margin-left: 50px; /* Adjust this margin for further alignment */
+  align-items: flex-start;
+  margin-left: 50px;
 }
 
 .radio-text {
@@ -84,7 +83,6 @@
   margin-left: 10px;
 }
 
-/* Container for radio buttons */
 .radio-container {
   display: flex;
   align-items: center;
@@ -94,14 +92,12 @@
   font-size: 16px;
 }
 
-/* Hide the default radio button */
 .radio-container input[type="radio"] {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
 
-/* Custom radio button */
 .radio-custom {
   position: relative;
   height: 20px;
@@ -113,12 +109,10 @@
   cursor: pointer;
 }
 
-/* Style for when the radio button is checked */
 .radio-container input[type="radio"]:checked + .radio-custom {
-  background-color: #2196f3; /* Custom color for selected radio button */
+  background-color: #2196f3;
 }
 
-/* Add the inner circle when the radio button is checked */
 .radio-custom::after {
   content: "";
   position: absolute;
@@ -182,7 +176,6 @@
   display: flex;
 }
 
-/* Custom cursor for quiz buttons */
 .quiz-button:hover {
   cursor:
     url("../../assets/images/crosshaircur.cur") 16 16,

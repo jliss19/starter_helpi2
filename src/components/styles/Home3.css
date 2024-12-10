@@ -24,7 +24,7 @@
 }
 
 .rocket-container {
-  position: absolute;
+  position: relative;
   left: 30%;
   height: 30%;
   width: 50%;
@@ -36,8 +36,8 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-color: transparent;
-  height: 50%;
-  rotate: 0deg;
+  height: 15vh;
+  rotate: 15deg;
 }
 
 .star-container1 {

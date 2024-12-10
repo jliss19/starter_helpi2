@@ -57,7 +57,7 @@
   transition:
     opacity 0.3s ease,
     transform 0.3s ease;
-  width: 250%;
+  width: 190%;
   text-align: center;
 }
 
@@ -82,7 +82,7 @@
   transition:
     opacity 0.3s ease,
     transform 0.3s ease;
-  width: 150%;
+  width: 120%;
   text-align: center;
 }
 

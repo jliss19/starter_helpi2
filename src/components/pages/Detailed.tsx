@@ -151,7 +151,7 @@ Central Career Field
 ### 
 Title: [Job Title] !!!
 Salary: [Salary Range] !!!
-Education Needed: [Education Requirements]
+Education Needed: [Education Requirements (keep the description brief, focusing on the level of education required, e.g., "Bachelor's degree", "Master's degree", "High school diploma")]
 
 ### 
 ...
