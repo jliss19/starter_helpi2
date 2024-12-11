@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';  // Change BrowserRouter to HashRouter
 import Home3 from './components/pages/Home3';
 import Detailed from './components/pages/Detailed';
 import Basic2 from './components/pages/Basic2';
@@ -13,7 +13,7 @@ function App() {
   return (
     <div className='home-image'>
       <div className='App'>
-        <Router>
+        <Router>  {/* HashRouter instead of BrowserRouter */}
           <div>
             <main>
               <Routes>
