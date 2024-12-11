@@ -1,18 +1,19 @@
-import React from "react";
-import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home3 from "./components/pages/Home3";
-import Detailed from "./components/pages/Detailed";
-import Basic2 from "./components/pages/Basic2";
-import Results2 from "./components/pages/Results2";
-import Loading from "./components/pages/Loading";
-import About from "./components/pages/About";
+import React from 'react';
+import './App.css';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';  // Change BrowserRouter to HashRouter
+import Home3 from './components/pages/Home3';
+import Detailed from './components/pages/Detailed';
+import Basic2 from './components/pages/Basic2';
+import Results from './components/pages/Results';
+import Results2 from './components/pages/Results2';
+import Loading from './components/pages/Loading';
+import About from './components/pages/About';
 
 function App() {
   return (
-    <div className="home-image">
-      <div className="App">
-        <BrowserRouter>
+    <div className='home-image'>
+      <div className='App'>
+        <Router>  {/* HashRouter instead of BrowserRouter */}
           <div>
             <main>
               <Routes>
@@ -25,7 +26,7 @@ function App() {
               </Routes>
             </main>
           </div>
-        </BrowserRouter>
+        </Router>
       </div>
     </div>
   );
